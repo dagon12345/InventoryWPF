@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Softwares\WPF_Inventory\WPF_Inventory\obj\Debug\
+C:\Users\lauespina\Documents\GitHub\InventoryWPF\WPF_Inventory\obj\Debug\
 WPF_Inventory
 none
 false
 DEBUG;TRACE
-D:\Softwares\WPF_Inventory\WPF_Inventory\App.xaml
-4-146939233
+C:\Users\lauespina\Documents\GitHub\InventoryWPF\WPF_Inventory\App.xaml
+5-849518609
 
-10-472541408
-29-1716624431
-ActivityLogs.xaml;Login.xaml;MainMenu.xaml;MainWindow.xaml;
+11-152726768
+29-1764492462
+ActivityLogs.xaml;frm_inventory.xaml;Login.xaml;MainMenu.xaml;MainWindow.xaml;
 
 True
 

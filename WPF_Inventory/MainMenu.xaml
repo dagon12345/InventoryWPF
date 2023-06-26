@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Inventory"
         mc:Ignorable="d"
-        Title="MainMenu" Height="700" Width="1000" Left="400" Top="170" x:Name="frm_mainmenu" Closed="frm_mainmenu_Closed" Loaded="frm_mainmenu_Loaded">
+        Title="MainMenu" Height="700" Width="1000" Left="450" Top="170" x:Name="frm_mainmenu" Closed="frm_mainmenu_Closed" Loaded="frm_mainmenu_Loaded">
 
     <Grid>
 
@@ -30,7 +30,7 @@
                     </MenuItem>
 
 
-                    <MenuItem Header="Inventory" Name="inventory" >
+                    <MenuItem Header="Inventory" Name="inventory" Click="inventory_Click" >
                         <MenuItem.Icon>
                             <Image Source="Box.png"/>
                         </MenuItem.Icon>

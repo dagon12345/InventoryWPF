@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Inventory"
         mc:Ignorable="d"
-        Title="Registration" Height="520" Width="800" Left="500" Top="250" x:Name="frm_registration"
+        Title="Registration" Height="520" Width="800" Left="570" Top="250" x:Name="frm_registration"
         ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
         <Label Content="Office ID" HorizontalAlignment="Left"

@@ -110,12 +110,13 @@ namespace WPF_Inventory
                 {
                     MessageBox.Show("Please Fill All the Fields!");
                 }
-               
 
+                else
+                {
                     int i = 0;
                     MySqlCommand cmd = con.CreateCommand();
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select * from db_register where Username='" + txtusername.Text + "' OR OfficeID='"+ txtofficeid.Text +"'";
+                    cmd.CommandText = "select * from db_register where Username='" + txtusername.Text + "' OR OfficeID='" + txtofficeid.Text + "'";
                     cmd.ExecuteNonQuery();
                     DataTable dt = new DataTable();
                     MySqlDataAdapter da = new MySqlDataAdapter(cmd);
@@ -123,49 +124,49 @@ namespace WPF_Inventory
                     i = Convert.ToInt32(dt.Rows.Count.ToString());
                     if (i == 0)
                     {
-                         if (MessageBox.Show("Are you sure you want to register this data?", "Register", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                         {
-                        MySqlCommand cmd1 = con.CreateCommand();
-                        cmd1.CommandType = CommandType.Text;
-                        cmd1.CommandText = "insert into db_register (OfficeID,Name,Usertype,Username,Password)values (@OfficeID,@Name,@Usertype,@Username,@Password)";
-                        cmd1.Parameters.AddWithValue("@OfficeID", txtofficeid.Text);
-                        cmd1.Parameters.AddWithValue("@Name", txtname.Text);
-                        cmd1.Parameters.AddWithValue("@Usertype", cmbusertype.Text);
-                        cmd1.Parameters.AddWithValue("@Username", txtusername.Text);
-                        cmd1.Parameters.AddWithValue("@Password", txtpassword.Text);
-                        cmd1.ExecuteNonQuery();
+                        if (MessageBox.Show("Are you sure you want to register this data?", "Register", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                        {
+                            MySqlCommand cmd1 = con.CreateCommand();
+                            cmd1.CommandType = CommandType.Text;
+                            cmd1.CommandText = "insert into db_register (OfficeID,Name,Usertype,Username,Password)values (@OfficeID,@Name,@Usertype,@Username,@Password)";
+                            cmd1.Parameters.AddWithValue("@OfficeID", txtofficeid.Text);
+                            cmd1.Parameters.AddWithValue("@Name", txtname.Text);
+                            cmd1.Parameters.AddWithValue("@Usertype", cmbusertype.Text);
+                            cmd1.Parameters.AddWithValue("@Username", txtusername.Text);
+                            cmd1.Parameters.AddWithValue("@Password", txtpassword.Text);
+                            cmd1.ExecuteNonQuery();
 
 
 
 
-                        //// ACTIVITY LOGS HERE
-                        ///
-                        DateTime theDate = DateTime.Now;
-                        theDate.ToString("yyyy-MM-dd hh:mm:ss");
+                            //// ACTIVITY LOGS HERE
+                            ///
+                            DateTime theDate = DateTime.Now;
+                            theDate.ToString("yyyy-MM-dd hh:mm:ss");
 
-                        MySqlCommand cmd2 = con.CreateCommand();
-                        cmd2.CommandType = CommandType.Text;
-                        cmd2.CommandText = "insert into db_activitylogs (Date,Time,UserID,Activity)values (@Date,@Time,@UserID,@Activity)";
-                        cmd2.Parameters.AddWithValue("@Date", DateTime.Now);
-                        cmd2.Parameters.AddWithValue("@Time", DateTime.Now.ToString("HH:mm:ss"));
-                        cmd2.Parameters.AddWithValue("@UserID", txtstatus1.Text);
-                        cmd2.Parameters.AddWithValue("@Activity", "has REGISTERED new user with the usertype " + cmbusertype.Text + " and a username of " + txtusername.Text  );
-                        cmd2.ExecuteNonQuery();
-
-
-                        clear();
-
-                        display();
-                        MessageBox.Show(" Registered Successfully!.");
+                            MySqlCommand cmd2 = con.CreateCommand();
+                            cmd2.CommandType = CommandType.Text;
+                            cmd2.CommandText = "insert into db_activitylogs (Date,Time,UserID,Activity)values (@Date,@Time,@UserID,@Activity)";
+                            cmd2.Parameters.AddWithValue("@Date", DateTime.Now);
+                            cmd2.Parameters.AddWithValue("@Time", DateTime.Now.ToString("HH:mm:ss"));
+                            cmd2.Parameters.AddWithValue("@UserID", txtstatus1.Text);
+                            cmd2.Parameters.AddWithValue("@Activity", "has REGISTERED new user with the usertype " + cmbusertype.Text + " and a username of " + txtusername.Text);
+                            cmd2.ExecuteNonQuery();
 
 
-                         }
+                            clear();
+
+                            display();
+                            MessageBox.Show(" Registered Successfully!.");
+
+
+                        }
                     }
                     else
                     {
                         MessageBox.Show("Name Already Exist Please Enter Another.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
-              
+                }
 
             }
 
@@ -176,8 +177,9 @@ namespace WPF_Inventory
                 {
                     MessageBox.Show("Can't Update While Empty!");
                 }
-             
-            
+
+                else
+                {
 
                     MySqlCommand cmd = con.CreateCommand();
                     cmd.CommandType = CommandType.Text;
@@ -195,21 +197,21 @@ namespace WPF_Inventory
 
 
 
-                ///LOGS
-                DateTime theDate = DateTime.Now;
-                theDate.ToString("yyyy-MM-dd hh:mm:ss");
+                    ///LOGS
+                    DateTime theDate = DateTime.Now;
+                    theDate.ToString("yyyy-MM-dd hh:mm:ss");
 
-                MySqlCommand cmd2 = con.CreateCommand();
-                cmd2.CommandType = CommandType.Text;
-                cmd2.CommandText = "insert into db_activitylogs (Date,Time,UserID,Activity)values (@Date,@Time,@UserID,@Activity)";
-                cmd2.Parameters.AddWithValue("@Date", DateTime.Now);
-                cmd2.Parameters.AddWithValue("@Time", DateTime.Now.ToString("HH:mm:ss"));
-                cmd2.Parameters.AddWithValue("@UserID", txtstatus1.Text);
-                cmd2.Parameters.AddWithValue("@Activity", "has UPDATED user with the usertype " + cmbusertype.Text + " and a username of " + txtusername.Text);
-                cmd2.ExecuteNonQuery();
+                    MySqlCommand cmd2 = con.CreateCommand();
+                    cmd2.CommandType = CommandType.Text;
+                    cmd2.CommandText = "insert into db_activitylogs (Date,Time,UserID,Activity)values (@Date,@Time,@UserID,@Activity)";
+                    cmd2.Parameters.AddWithValue("@Date", DateTime.Now);
+                    cmd2.Parameters.AddWithValue("@Time", DateTime.Now.ToString("HH:mm:ss"));
+                    cmd2.Parameters.AddWithValue("@UserID", txtstatus1.Text);
+                    cmd2.Parameters.AddWithValue("@Activity", "has UPDATED user with the usertype " + cmbusertype.Text + " and a username of " + txtusername.Text);
+                    cmd2.ExecuteNonQuery();
 
-                display();
-                clear();
+                    display();
+                    clear();
 
 
 
@@ -217,7 +219,7 @@ namespace WPF_Inventory
                     // display();
                     MessageBox.Show("Successfully Updated");
 
-             
+                }
             }
         }
        

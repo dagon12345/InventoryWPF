@@ -105,5 +105,11 @@ namespace WPF_Inventory
                 txtusertypestatus1.Text = dr["Usertype"].ToString();
             }
         }
+
+        private void inventory_Click(object sender, RoutedEventArgs e)
+        {
+            frm_inventory fi = new frm_inventory();
+            fi.Show();
+        }
     }
 }
