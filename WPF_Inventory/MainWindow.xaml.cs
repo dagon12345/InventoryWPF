@@ -63,6 +63,25 @@ namespace WPF_Inventory
             txtofficeid.Clear();
             txtofficeid.Focus();
         }
+        public void statusbar()
+        {
+            MySqlCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from db_statusbar ";
+            //  cmd.Parameters.AddWithValue("Name", string.Format("%{0}%", txtsearch.Text));
+            cmd.ExecuteNonQuery();
+            DataTable dt = new DataTable();
+            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+            da.Fill(dt);
+            foreach (DataRow dr in dt.Rows)
+            {
+                txtstatus1.Text = dr["UserID"].ToString();
+                txtusertypestatus1.Text = dr["Usertype"].ToString();
+
+
+            }
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             con = new MySqlConnection(cs.DBcon);
@@ -262,24 +281,7 @@ namespace WPF_Inventory
             }
             
         }
-        public void statusbar()
-        {
-            MySqlCommand cmd = con.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from db_statusbar ";
-            //  cmd.Parameters.AddWithValue("Name", string.Format("%{0}%", txtsearch.Text));
-            cmd.ExecuteNonQuery();
-            DataTable dt = new DataTable();
-            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            da.Fill(dt);
-            foreach (DataRow dr in dt.Rows)
-            {
-                txtstatus1.Text = dr["UserID"].ToString();
-                txtusertypestatus1.Text = dr["Usertype"].ToString();
-
-
-            }
-        }
+      
         private void btnretrieve_Click(object sender, RoutedEventArgs e)
         {
             if (txtsearch.Text == "")

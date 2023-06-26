@@ -28,14 +28,12 @@ namespace WPF_Inventory
 
 
 
-        MySqlCommand cmd;
-        MySqlDataAdapter da;
-        DataTable dt;
 
 
         public MainMenu()
         {
             InitializeComponent();
+     
         }
 
 
@@ -87,13 +85,15 @@ namespace WPF_Inventory
             }
             con.Open();
             statusbar();
+
+
         }
 
         public void statusbar()
         {
             MySqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from db_statusbar ";
+            cmd.CommandText = "select UserID,Usertype FROM db_statusbar";
             //  cmd.Parameters.AddWithValue("Name", string.Format("%{0}%", txtsearch.Text));
             cmd.ExecuteNonQuery();
             DataTable dt = new DataTable();
@@ -103,8 +103,6 @@ namespace WPF_Inventory
             {
                 txtstatus1.Text = dr["UserID"].ToString();
                 txtusertypestatus1.Text = dr["Usertype"].ToString();
-              
-
             }
         }
     }
