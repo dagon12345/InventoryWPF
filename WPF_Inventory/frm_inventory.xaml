@@ -6,9 +6,101 @@
         xmlns:local="clr-namespace:WPF_Inventory"
         mc:Ignorable="d"
         Title="Inventory" Height="700" Width="1000" Left="450" Top="170" 
-        ResizeMode="NoResize">
+        >
     <Grid>
+
+
+        <Label Content="Name of Staff" HorizontalAlignment="Left"
+               Margin="30,30,0,0" VerticalAlignment="Top"></Label>
+        <Label Content="Section" HorizontalAlignment="Left"
+               Margin="30,80,0,0" VerticalAlignment="Top"></Label>
+        <Label Content="Division" HorizontalAlignment="Left"
+               Margin="30,120,0,0" VerticalAlignment="Top"></Label>
+        <Label Content="Number of pieces" HorizontalAlignment="Left"
+               Margin="30,160,0,0" VerticalAlignment="Top"></Label>
+
+        <Label Content="Type of ICT Equipment" HorizontalAlignment="Left"
+               Margin="30,200,0,0" VerticalAlignment="Top"></Label>
+
+        <Label Content="Hardware type" HorizontalAlignment="Left"
+               Margin="30,245,0,0" VerticalAlignment="Top"></Label>
+
+        <Label Content="Year Acquired" HorizontalAlignment="Left"
+               Margin="30,290,0,0" VerticalAlignment="Top"></Label>
+
+
+        <TextBox Name="txtnameofstaff" HorizontalAlignment="Left" TabIndex="0" 
+               Margin="35,53,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
+
+        <TextBox Name="txtsection" HorizontalAlignment="Left" TabIndex="0" 
+               Margin="35,100,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
+
+
+        <TextBox Name="txtdivision" HorizontalAlignment="Left" TabIndex="0" 
+               Margin="35,140,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
+
+        <TextBox Name="txtpiece" HorizontalAlignment="Left" TabIndex="0" 
+               Margin="35,180,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
+
+        <TextBox Name="txttypeofict" HorizontalAlignment="Left" TabIndex="0" 
+               Margin="35,220,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
+
+        <ComboBox Name="cmbtype" HorizontalAlignment="Left" TabIndex="0" 
+               Margin="35,265,0,0" VerticalAlignment="Top" Height="25" Width="200">
+
+
+            <ComboBoxItem>Desktop</ComboBoxItem>
+            <ComboBoxItem>Laptop</ComboBoxItem>
+            <ComboBoxItem>Printer</ComboBoxItem>
+            <ComboBoxItem>Extra Monitors</ComboBoxItem>
+            <ComboBoxItem>Photo Copier</ComboBoxItem>
+            
+            
+        </ComboBox>
+
+        <DatePicker Name="datetimepicker" HorizontalAlignment="Left" TabIndex="0" 
+               Margin="35,310,0,0" VerticalAlignment="Top" Height="25" Width="200" />
+
+        <Button x:Name="btnclear" Content="Clear"  HorizontalAlignment="Left" TabIndex="8" Cursor="Hand"
+               Margin="35,350,0,0" VerticalAlignment="Top" Height="30" Width="120" Click="btnclear_Click" ></Button>
+
+        <Button x:Name="btnadd" Content="Add"  HorizontalAlignment="Left" TabIndex="8" Cursor="Hand"
+               Margin="35,400,0,0" VerticalAlignment="Top" Height="30" Width="200" Click="btnadd_Click" ></Button>
+
+        <Button x:Name="btnupdate" Content="Update"  HorizontalAlignment="Left" TabIndex="8" Cursor="Hand"
+               Margin="35,450,0,0" VerticalAlignment="Top" Height="30" Width="200" ></Button>
+
+        <Button x:Name="btndelete" Content="Delete"  HorizontalAlignment="Left" TabIndex="8" Cursor="Hand"
+               Margin="35,500,0,0" VerticalAlignment="Top" Height="30" Width="200" ></Button>
+
+
+        <Label Content="Enter Name of Staff or Section or Division" HorizontalAlignment="Left" FontSize="10" FontWeight="Bold"
+               Margin="350,1,0,0" VerticalAlignment="Top"></Label>
+
+        <TextBox x:Name="txtsearch"  HorizontalAlignment="Left" FontSize="10"
+               Margin="350,25,0,0" VerticalAlignment="Top" Height="20" Width="560" ></TextBox>
+        
+        <Button x:Name="btnretrieve" Content="Retrieve"  HorizontalAlignment="Left" Cursor="Hand"
+               Margin= "350,55,0,0" VerticalAlignment="Top" Height="25" Width="100" ></Button>
+
+        <Button x:Name="btnrfresh" Content="Refresh"  HorizontalAlignment="Left" Cursor="Hand"
+               Margin= "470,55,0,0" VerticalAlignment="Top" Height="25" Width="100" ></Button>
         
         
+
+
+
+        <DataGrid x:Name="datagrid"  IsReadOnly="True"  SelectionUnit="FullRow" AlternatingRowBackground = "LightBlue"   
+         AlternationCount = "2"  Margin="350,90,5,60"  CanUserResizeRows="False"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch"/>
+
+        <StatusBar Height="25" VerticalAlignment="Bottom" Background="Black" >
+            <TextBlock Name="txtstatus" Text="User ID: " Foreground="White" FontWeight="Bold"/>
+            <TextBlock Name="txtstatus1" Text="----------" Foreground="White" FontStyle="Italic"/>
+            <Separator BorderThickness="2"/>
+            <TextBlock Name="txtusertypestatus" Text="Usertype: " Foreground="White" FontWeight="Bold"/>
+            <TextBlock Name="txtusertypestatus1" Text="----------" Foreground="White" FontStyle="Italic"/>
+        </StatusBar>
+
+
     </Grid>
 </Window>
