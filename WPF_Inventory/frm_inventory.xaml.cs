@@ -118,6 +118,7 @@ namespace WPF_Inventory
             txttypeofict.Clear();
             cmbtype.Text = "";
             datetimepicker.Text = "";
+            display();
             txtnameofstaff.Focus();
         }
 
@@ -386,6 +387,28 @@ namespace WPF_Inventory
         private void txtnameofstaff_MouseLeave(object sender, MouseEventArgs e)
         {
 
+        }
+
+        private void btnrfresh_Click(object sender, RoutedEventArgs e)
+        {
+            clear();
+        }
+
+        private void txtsearch_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+           
+                MySqlCommand cmd = con.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from db_inventory where NameofStaff LIKE '" + txtsearch.Text + "%' OR Section LIKE '" + txtsearch.Text + " %' OR Division LIKE '" + txtsearch.Text + "%'";
+                //  cmd.Parameters.AddWithValue("Name", string.Format("%{0}%", txtsearch.Text));
+                cmd.ExecuteNonQuery();
+                DataTable dt = new DataTable();
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                da.Fill(dt);
+                datagrid.ItemsSource = dt.DefaultView;
+               // this.datagrid.Columns[0].Visibility = Visibility.Hidden;
+            
+            
         }
     }
 }

@@ -73,27 +73,69 @@
         <Button x:Name="btnclear" Content="Clear"  HorizontalAlignment="Left" TabIndex="8" Cursor="Hand"
                Margin="35,350,0,0" VerticalAlignment="Top" Height="30" Width="120" Click="btnclear_Click" ></Button>
 
-        <Button x:Name="btnadd" Content="Add"  HorizontalAlignment="Left" TabIndex="8" Cursor="Hand"
-               Margin="35,400,0,0" VerticalAlignment="Top" Height="30" Width="200" Click="btnadd_Click" ></Button>
+        
+        
+        <Button x:Name="btnadd"  FontSize="15" FontFamily="CenturyGothic" FontWeight="Bold" HorizontalAlignment="Left" TabIndex="8" Cursor="Hand" Background="#14CA53" 
+               Foreground="White" Margin="35,400,0,0" VerticalAlignment="Top" Height="35" Width="200" Click="btnadd_Click" >
 
-        <Button x:Name="btnupdate" Content="Update"  HorizontalAlignment="Left" TabIndex="8" Cursor="Hand"
-               Margin="35,450,0,0" VerticalAlignment="Top" Height="30" Width="200" Click="btnupdate_Click" ></Button>
 
-        <Button x:Name="btndelete" Content="Delete"  HorizontalAlignment="Left" TabIndex="8" Cursor="Hand"
-               Margin="35,500,0,0" VerticalAlignment="Top" Height="30" Width="200" Click="btndelete_Click" ></Button>
+            <Button.Resources>
+
+                <Style TargetType="Border">
+
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            
+            <Button.Content>
+                <TextBlock Text="ADD" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Button.Content>
+        </Button>
+
+        <Button x:Name="btnupdate"   HorizontalAlignment="Left" TabIndex="8" Cursor="Hand" FontSize="15" FontFamily="CenturyGothic" FontWeight="Bold" Background="#F3B605" 
+             Foreground="White"  Margin="35,450,0,0" VerticalAlignment="Top" Height="35" Width="200" Click="btnupdate_Click" >
+
+            <Button.Resources>
+
+                <Style TargetType="Border">
+
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            
+            
+            <Button.Content>
+                <TextBlock Text="UPDATE" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Button.Content>
+        </Button>
+
+        <Button x:Name="btndelete"   HorizontalAlignment="Left" TabIndex="8" Cursor="Hand" FontSize="15" FontFamily="CenturyGothic" FontWeight="Bold" Background="#F33705" 
+             Foreground="White" Margin="35,500,0,0" VerticalAlignment="Top" Height="35" Width="200" Click="btndelete_Click" >
+
+            <Button.Resources>
+
+                <Style TargetType="Border">
+
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+
+
+            <Button.Content>
+                <TextBlock Text="DELETE" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Button.Content>
+
+        </Button>
 
 
         <Label Content="Enter Name of Staff or Section or Division" HorizontalAlignment="Left" FontSize="10" FontWeight="Bold"
                Margin="350,1,0,0" VerticalAlignment="Top"></Label>
 
         <TextBox x:Name="txtsearch"  HorizontalAlignment="Left" FontSize="10"
-               Margin="350,25,0,0" VerticalAlignment="Top" Height="20" Width="560" ></TextBox>
-        
-        <Button x:Name="btnretrieve" Content="Retrieve"  HorizontalAlignment="Left" Cursor="Hand"
-               Margin= "350,55,0,0" VerticalAlignment="Top" Height="25" Width="100" ></Button>
+               Margin="350,25,0,0" VerticalAlignment="Top" Height="20" Width="560" SelectionChanged="txtsearch_SelectionChanged" ></TextBox>
 
         <Button x:Name="btnrfresh" Content="Refresh"  HorizontalAlignment="Left" Cursor="Hand"
-               Margin= "470,55,0,0" VerticalAlignment="Top" Height="25" Width="100" ></Button>
+               Margin= "350,56,0,0" VerticalAlignment="Top" Height="25" Width="100" Click="btnrfresh_Click" ></Button>
         
         
 
