@@ -28,9 +28,18 @@
         <Label Content="Year Acquired" HorizontalAlignment="Left"
                Margin="30,290,0,0" VerticalAlignment="Top"></Label>
 
+        <TextBlock x:Name="timerTextBlock" />
 
+
+        <TextBox Name="txtid" HorizontalAlignment="Left" TabIndex="0" Text="ID" Visibility="Hidden"
+               Margin="35,10,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
+        
+        
         <TextBox Name="txtnameofstaff" HorizontalAlignment="Left" TabIndex="0" 
-               Margin="35,53,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
+               Margin="35,53,0,0" VerticalAlignment="Top" Height="20" Width="200" TextChanged="txtnameofstaff_TextChanged" MouseLeave="txtnameofstaff_MouseLeave"></TextBox>
+
+        <ListBox x:Name="listBoxSuggestions"  HorizontalAlignment="Left" SelectionChanged="listBoxSuggestions_SelectionChanged"  Margin="35,70,0,0" VerticalAlignment="Top" Height="20" Width="200" />
+
 
         <TextBox Name="txtsection" HorizontalAlignment="Left" TabIndex="0" 
                Margin="35,100,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
@@ -68,10 +77,10 @@
                Margin="35,400,0,0" VerticalAlignment="Top" Height="30" Width="200" Click="btnadd_Click" ></Button>
 
         <Button x:Name="btnupdate" Content="Update"  HorizontalAlignment="Left" TabIndex="8" Cursor="Hand"
-               Margin="35,450,0,0" VerticalAlignment="Top" Height="30" Width="200" ></Button>
+               Margin="35,450,0,0" VerticalAlignment="Top" Height="30" Width="200" Click="btnupdate_Click" ></Button>
 
         <Button x:Name="btndelete" Content="Delete"  HorizontalAlignment="Left" TabIndex="8" Cursor="Hand"
-               Margin="35,500,0,0" VerticalAlignment="Top" Height="30" Width="200" ></Button>
+               Margin="35,500,0,0" VerticalAlignment="Top" Height="30" Width="200" Click="btndelete_Click" ></Button>
 
 
         <Label Content="Enter Name of Staff or Section or Division" HorizontalAlignment="Left" FontSize="10" FontWeight="Bold"
@@ -91,14 +100,14 @@
 
 
         <DataGrid x:Name="datagrid"  IsReadOnly="True"  SelectionUnit="FullRow" AlternatingRowBackground = "LightBlue"   
-         AlternationCount = "2"  Margin="350,90,5,60"  CanUserResizeRows="False"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch"/>
+         AlternationCount = "2"  Margin="350,90,5,60"  CanUserResizeRows="False"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch" SelectionChanged="datagrid_SelectionChanged"/>
 
         <StatusBar Height="25" VerticalAlignment="Bottom" Background="Black" >
             <TextBlock Name="txtstatus" Text="User ID: " Foreground="White" FontWeight="Bold"/>
-            <TextBlock Name="txtstatus1" Text="----------" Foreground="White" FontStyle="Italic"/>
+            <TextBlock Name="lbluserid" Text="----------" Foreground="White" FontStyle="Italic"/>
             <Separator BorderThickness="2"/>
             <TextBlock Name="txtusertypestatus" Text="Usertype: " Foreground="White" FontWeight="Bold"/>
-            <TextBlock Name="txtusertypestatus1" Text="----------" Foreground="White" FontStyle="Italic"/>
+            <TextBlock Name="lblusertype" Text="----------" Foreground="White" FontStyle="Italic"/>
         </StatusBar>
 
 

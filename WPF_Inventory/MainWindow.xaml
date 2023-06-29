@@ -21,7 +21,11 @@
         <Label Content="Password:" HorizontalAlignment="Left"
                Margin="30,200,0,0" VerticalAlignment="Top"></Label>
 
+        <TextBlock x:Name="timerTextBlock"  HorizontalAlignment="Left"
+               Margin="30,200,0,0" VerticalAlignment="Top" />
 
+        
+        
         <Label Content="Enter Office ID or Correct Username to Retrieve" HorizontalAlignment="Left" FontSize="10" FontWeight="Bold"
                Margin="210,1,0,0" VerticalAlignment="Top"></Label>
 
