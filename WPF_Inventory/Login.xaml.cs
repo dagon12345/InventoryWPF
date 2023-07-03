@@ -16,6 +16,8 @@ using MySql.Data.MySqlClient;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Net;
+using System.ComponentModel;
+using System.Threading;
 
 namespace WPF_Inventory
 {
@@ -30,19 +32,144 @@ namespace WPF_Inventory
 
         string utype = "";
 
+        BackgroundWorker _bgWorker;
+        bool _iNeedToCloseAfterBgWorker;
+
+
+        void _bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            ////completed here
+            btnlogin.IsEnabled = true;
+            lblnetstatus.Content = "Successfully connected to SQL Server.";
+            lblnetstatus.Foreground = Brushes.SeaGreen;
+            // btn_rc.Enabled = true;
+            if (_iNeedToCloseAfterBgWorker)
+                Close();
+        }
+
+
+   
+        void _bgWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            // Access lbl_internet here
+           
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                // Your UI-related code here
+                lblnetstatus.Content = "Detecting Internet Connection please wait...";
+                lblnetstatus.Foreground = Brushes.DarkBlue;
+            });
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                // Your UI-related code here
+                btnlogin.IsEnabled = false;
+            });
+
+
      
 
-        public Login()
+            // Do long lasting work above is the before process before final
+            Thread.Sleep(1000);
+
+            ///// INTERNET IS UP OR DOWN CODE
+            try
+            {
+                using (var client = new WebClient())
+                using (var stream = client.OpenRead("http://www.google.com"))
+                {
+                    //MessageBox.Show("Internet Up");
+                   
+
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        // Your UI-related code here
+                        lblnetstatus.Content = "Internet is up.";
+                        lblnetstatus.Foreground = Brushes.SeaGreen;
+                    });
+                }
+            }
+            catch
+            {
+
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    // Your UI-related code here
+                    lblnetstatus.Content = "No internet connection.";
+                    lblnetstatus.Foreground = Brushes.Crimson;
+                });
+                // MessageBox.Show("Internet Down");
+             
+                //lblnetstatus
+            }
+
+
+
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                // Your UI-related code here
+                lblnetstatus.Content = "Detecting SQL Connection.";
+                lblnetstatus.Foreground = Brushes.DarkBlue;
+            });
+
+
+
+            try
+            {
+             
+
+                con = new MySqlConnection(cs.DBcon);
+
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                con.Open();
+
+            }
+            catch(Exception ex)
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    // Your UI-related code here
+                    lblnetstatus.Content = "Can't connect to SQL host.";
+                    lblnetstatus.Foreground = Brushes.Crimson;
+                });
+
+                MessageBox.Show("Can't connect to sql host please turn on SQL Database.");
+
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    // Your UI-related code here
+                    Application.Current.Shutdown();
+                });
+               
+            }
+
+        
+
+
+
+
+
+        }
+
+
+
+    
+    public Login()
         {
             InitializeComponent();
 
-            con = new MySqlConnection(cs.DBcon);
+            _bgWorker = new BackgroundWorker();
+            _bgWorker.DoWork += _bgWorker_DoWork;
+            _bgWorker.RunWorkerCompleted += _bgWorker_RunWorkerCompleted;
 
-            if (con.State == ConnectionState.Open)
-            {
-                con.Close();
-            }
-            con.Open();
+            _bgWorker.RunWorkerAsync();
+
+
 
 
             txtusername.Focus();
@@ -56,24 +183,7 @@ namespace WPF_Inventory
 
 
 
-    
-
-            ///// INTERNET IS UP OR DOWN CODE
-            try
-            {
-                using (var client = new WebClient())
-                using (var stream = client.OpenRead("http://www.google.com"))
-                {
-                    //MessageBox.Show("Internet Up");
-                    lblnetstatus.Content = "Internet is up.";
-                }
-            }
-            catch
-            {
-                // MessageBox.Show("Internet Down");
-                lblnetstatus.Content = "No internet connection.";
-               //lblnetstatus
-            }
+        
 
 
         }

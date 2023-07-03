@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
 using MySql.Data.MySqlClient;
+using System.ComponentModel;
+using System.Threading;
 
 namespace WPF_Inventory
 {
@@ -27,18 +29,111 @@ namespace WPF_Inventory
         MySqlConnection con = null;
 
 
+        BackgroundWorker _bgWorker;
+        bool _iNeedToCloseAfterBgWorker;
 
+
+
+        void _bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            ////completed here
+            lblnetstatus.Text = "Successfully connected to SQL Server.";
+            lblnetstatus.Foreground = Brushes.SeaGreen ;
+            panel.IsEnabled = true;
+            // btn_rc.Enabled = true;
+            if (_iNeedToCloseAfterBgWorker)
+                Close();
+        }
+
+
+        void _bgWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            // Access lbl_internet here
+
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                // Your UI-related code here
+                lblnetstatus.Text = "Detecting SQL Connection please wait...";
+                lblnetstatus.Foreground = Brushes.Yellow;
+            });
+
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                // Your UI-related code here
+                panel.IsEnabled = false;
+            });
+
+
+
+            // Do long lasting work above is the before process before final
+            Thread.Sleep(1000);
+
+
+
+
+
+           
+
+
+            try
+            {
+
+
+                con = new MySqlConnection(cs.DBcon);
+
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                con.Open();
+                statusbar();
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    // Your UI-related code here
+                    lblnetstatus.Text = "Can't connect to SQL host.";
+                    lblnetstatus.Foreground = Brushes.Crimson;
+                });
+
+                MessageBox.Show(ex.Message);
+
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    // Your UI-related code here
+                    Application.Current.Shutdown();
+                });
+
+            }
+        }
 
 
         public MainMenu()
         {
             InitializeComponent();
-     
+
+
+
+            _bgWorker = new BackgroundWorker();
+            _bgWorker.DoWork += _bgWorker_DoWork;
+            _bgWorker.RunWorkerCompleted += _bgWorker_RunWorkerCompleted;
+
+            _bgWorker.RunWorkerAsync();
+
+
+
+
         }
 
 
 
-   
+
         private void frm_mainmenu_Closed(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
@@ -77,14 +172,7 @@ namespace WPF_Inventory
 
         private void frm_mainmenu_Loaded(object sender, RoutedEventArgs e)
         {
-            con = new MySqlConnection(cs.DBcon);
-
-            if (con.State == ConnectionState.Open)
-            {
-                con.Close();
-            }
-            con.Open();
-            statusbar();
+           
 
 
         }
@@ -101,8 +189,16 @@ namespace WPF_Inventory
             da.Fill(dt);
             foreach (DataRow dr in dt.Rows)
             {
-                txtstatus1.Text = dr["UserID"].ToString();
-                txtusertypestatus1.Text = dr["Usertype"].ToString();
+
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    // Your UI-related code here
+                    txtstatus1.Text = dr["UserID"].ToString();
+                    txtusertypestatus1.Text = dr["Usertype"].ToString();
+                });
+
+
+             
             }
         }
 

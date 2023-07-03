@@ -22,10 +22,13 @@
             <TextBlock Name="txtusertypestatus" Text="Usertype: " Foreground="White" FontWeight="Bold"/>
             <TextBlock Name="txtusertypestatus1" Text="----------" Foreground="White" FontStyle="Italic"/>
 
+            <TextBlock  Text="Connection Status: " Foreground="White" FontWeight="Bold"/>
+            <TextBlock Name="lblnetstatus" Text="----------" Foreground="White" FontStyle="Italic"/>
+
         </StatusBar>
 
         <DockPanel Grid.ColumnSpan="2" >
-            <Menu Height="20" DockPanel.Dock="Top" VerticalAlignment="Top" >
+            <Menu Height="20" DockPanel.Dock="Top" VerticalAlignment="Top" Name="panel">
 
                 <MenuItem Header="Options" Name="m_info" >
 
