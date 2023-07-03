@@ -87,6 +87,10 @@
             <Separator BorderThickness="2"/>
             <TextBlock Name="txtusertypestatus" Text="Usertype: " Foreground="White" FontWeight="Bold"/>
             <TextBlock Name="txtusertypestatus1" Text="----------" Foreground="White" FontStyle="Italic"/>
+            <TextBlock  Text="Connection Status: " Foreground="White" FontWeight="Bold"/>
+            <TextBlock Name="lblnetstatus" Text="----------" Foreground="White" FontStyle="Italic"/>
+
+
         </StatusBar>
         
         
