@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Inventory"
         mc:Ignorable="d"
-        Title="Inventory" Height="700" Width="1000" Left="450" Top="170" 
+        Title="Inventory" Height="700" Width="1000" WindowStartupLocation="CenterScreen"
         >
     <Grid>
 

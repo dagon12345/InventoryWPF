@@ -5,24 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Inventory"
         mc:Ignorable="d"
-        Title="MainMenu" Height="700" Width="1000" Left="450" Top="170" x:Name="frm_mainmenu" Closed="frm_mainmenu_Closed" Loaded="frm_mainmenu_Loaded">
+        Title="MainMenu" Height="700" Width="1000"  x:Name="frm_mainmenu" Closed="frm_mainmenu_Closed" Loaded="frm_mainmenu_Loaded"  WindowStartupLocation="CenterScreen" >
 
-    <Grid>
-
-        <StatusBar Height="25" VerticalAlignment="Bottom" Background="Black" >
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+     
+        <StatusBar Height="25" VerticalAlignment="Bottom" Background="Black" Grid.ColumnSpan="2" >
             <TextBlock Name="txtstatus" Text="User ID: " Foreground="White" FontWeight="Bold"/>
             <TextBlock Name="txtstatus1" Text="----------" Foreground="White" FontStyle="Italic" Loaded="txtstatus1_Loaded"/>
             <Separator BorderThickness="2"/>
             <TextBlock Name="txtusertypestatus" Text="Usertype: " Foreground="White" FontWeight="Bold"/>
             <TextBlock Name="txtusertypestatus1" Text="----------" Foreground="White" FontStyle="Italic"/>
-            
+
         </StatusBar>
-        
-        <DockPanel >
+
+        <DockPanel Grid.ColumnSpan="2" >
             <Menu Height="20" DockPanel.Dock="Top" VerticalAlignment="Top" >
 
                 <MenuItem Header="Options" Name="m_info" >
-                    
+
                     <MenuItem Header="Inventory Information" Name="information" >
                         <MenuItem.Icon>
                             <Image Source="Info.png"/>
@@ -43,7 +49,7 @@
                         <MenuItem.Icon>
                             <Image Source="Logs.png"/>
                         </MenuItem.Icon>
-         
+
                     </MenuItem>
 
 

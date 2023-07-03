@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Inventory"
         mc:Ignorable="d"
-        Title="Login" Height="300" Width="400" Left="750" Top="350" x:Name="frm_login"
+        Title="Login" Height="300" Width="400" WindowStartupLocation="CenterScreen" x:Name="frm_login"
         ResizeMode="NoResize" Closed="frm_login_Closed">
 
 
