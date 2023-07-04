@@ -136,7 +136,7 @@
                Margin="350,1,0,0" VerticalAlignment="Top"></Label>
 
         <TextBox x:Name="txtsearch"  HorizontalAlignment="Left" FontSize="10"
-               Margin="350,25,0,0" VerticalAlignment="Top" Height="20" Width="560" SelectionChanged="txtsearch_SelectionChanged" ></TextBox>
+               Margin="350,25,0,0" VerticalAlignment="Top" Height="20" Width="560" SelectionChanged="txtsearch_SelectionChanged" TextChanged="txtsearch_TextChanged" ></TextBox>
 
         <Button x:Name="btnrfresh" Content="Refresh"  HorizontalAlignment="Left" Cursor="Hand"
                Margin= "350,56,0,0" VerticalAlignment="Top" Height="25" Width="100" Click="btnrfresh_Click" ></Button>

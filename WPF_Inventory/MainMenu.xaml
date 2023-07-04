@@ -32,7 +32,7 @@
 
                 <MenuItem Header="Options" Name="m_info" >
 
-                    <MenuItem Header="Inventory Information" Name="information" >
+                    <MenuItem Header="Inventory Information" Name="information" Click="information_Click" >
                         <MenuItem.Icon>
                             <Image Source="Info.png"/>
                         </MenuItem.Icon>

@@ -182,6 +182,10 @@ namespace WPF_Inventory
             lblusertypetext.Visibility = Visibility.Hidden;
 
 
+            lblname.Visibility = Visibility.Hidden;
+            txtname.Visibility = Visibility.Hidden;
+
+
 
         
 
@@ -210,6 +214,7 @@ namespace WPF_Inventory
                 {
                     lblusertype.Text = dr["UserType"].ToString();
                     lbluserid.Text = dr["OfficeID"].ToString();
+                    txtname.Text = dr["Name"].ToString();
                 }
 
        
@@ -232,9 +237,10 @@ namespace WPF_Inventory
 
                         MySqlCommand cmd2 = con.CreateCommand();
                         cmd2.CommandType = CommandType.Text;
-                        cmd2.CommandText = "update db_statusbar SET UserID=@UserID, Usertype=@Usertype";
+                        cmd2.CommandText = "update db_statusbar SET UserID=@UserID, Usertype=@Usertype, name=@name";
                         cmd2.Parameters.AddWithValue("@UserID", lbluserid.Text);
                         cmd2.Parameters.AddWithValue("@Usertype", lblusertype.Text);
+                        cmd2.Parameters.AddWithValue("@name", txtname.Text);
                         cmd2.ExecuteNonQuery();
 
 
@@ -262,9 +268,10 @@ namespace WPF_Inventory
                     {
                         MySqlCommand cmd2 = con.CreateCommand();
                         cmd2.CommandType = CommandType.Text;
-                        cmd2.CommandText = "update db_statusbar SET UserID=@UserID, Usertype=@Usertype";
+                        cmd2.CommandText = "update db_statusbar SET UserID=@UserID, Usertype=@Usertype, name=@name";
                         cmd2.Parameters.AddWithValue("@UserID", lbluserid.Text);
                         cmd2.Parameters.AddWithValue("@Usertype", lblusertype.Text);
+                        cmd2.Parameters.AddWithValue("@name", txtname.Text);
                         cmd2.ExecuteNonQuery();
                         this.Hide();
 

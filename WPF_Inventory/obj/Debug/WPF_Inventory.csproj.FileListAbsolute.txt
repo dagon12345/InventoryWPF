@@ -135,3 +135,5 @@ C:\Users\lauespina\Documents\GitHub\InventoryWPF\WPF_Inventory\obj\Debug\WPF_Inv
 C:\Users\lauespina\Documents\GitHub\InventoryWPF\WPF_Inventory\obj\Debug\WPF_Inventory.pdb
 C:\Users\lauespina\Documents\GitHub\InventoryWPF\WPF_Inventory\obj\Debug\frm_inventory.g.cs
 C:\Users\lauespina\Documents\GitHub\InventoryWPF\WPF_Inventory\obj\Debug\frm_inventory.baml
+C:\Users\lauespina\Documents\GitHub\InventoryWPF\WPF_Inventory\obj\Debug\frmUsers.g.cs
+C:\Users\lauespina\Documents\GitHub\InventoryWPF\WPF_Inventory\obj\Debug\frmUsers.baml

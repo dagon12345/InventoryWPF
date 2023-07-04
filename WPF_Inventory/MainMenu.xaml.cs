@@ -207,5 +207,11 @@ namespace WPF_Inventory
             frm_inventory fi = new frm_inventory();
             fi.Show();
         }
+
+        private void information_Click(object sender, RoutedEventArgs e)
+        {
+            frmUsers fu = new frmUsers();
+            fu.Show();
+        }
     }
 }

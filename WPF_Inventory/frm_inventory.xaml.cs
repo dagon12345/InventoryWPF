@@ -566,5 +566,10 @@ namespace WPF_Inventory
         {
           
         }
+
+        private void txtsearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

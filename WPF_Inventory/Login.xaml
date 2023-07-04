@@ -104,6 +104,11 @@
 
         </Button>
 
+        <Label Content="lblname" HorizontalAlignment="Left" x:Name="lblname"
+            Margin="208,235,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.668,0.487"/>
+        <TextBox x:Name="txtname" HorizontalAlignment="Left" TabIndex="1" IsReadOnly="True" 
+            Margin="0,241,0,0" VerticalAlignment="Top" Height="20" Width="97" Grid.Column="1"/>
+
 
 
 
