@@ -7,10 +7,8 @@
         mc:Ignorable="d"
         Title="ActivityLogs"  Height="700" Width="1000" WindowStartupLocation="CenterScreen" x:Name="frm_login">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="267*"/>
-            <ColumnDefinition Width="725*"/>
-        </Grid.ColumnDefinitions>
+        
+       
         <Label Content="Search by Date:" Margin="15,5,0,0" FontWeight="Bold" Grid.ColumnSpan="2"></Label>
 
         <Label Content="From:" Margin="15,27,0,0" Grid.ColumnSpan="2"></Label>
@@ -23,13 +21,26 @@
         <Button Height="30" Width="200" Margin="20,135,0,0" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="Hand" Click="Button_Click"></Button>
         <Button Height="30" Width="200" Margin="20,170,0,0" Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="Hand" Name="btn_refresh" Click="btn_refresh_Click"></Button>
 
+        
 
         <DataGrid x:Name="datagrid" TabIndex="12" IsReadOnly="True"  SelectionUnit="FullRow" AlternatingRowBackground = "LightBlue"  
-         AlternationCount = "2"  Margin="5,210,0,0"  CanUserResizeRows="False" Loaded="datagrid_Loaded" Grid.ColumnSpan="2"  >
-
-            
-            
+         AlternationCount = "2"  Margin="5,210,0,30"  CanUserResizeRows="False" Loaded="datagrid_Loaded" Grid.ColumnSpan="2"  >
         </DataGrid>
+
+        <StatusBar Height="25"  VerticalAlignment="Bottom" Background="Black" >
+            <TextBlock Name="txtstatus" Text="User ID: " Foreground="White" FontWeight="Bold"/>
+            <TextBlock Name="txtstatus1" Text="----------" Foreground="White" FontStyle="Italic"/>
+            <Separator BorderThickness="2"/>
+            <TextBlock Name="txtusertypestatus" Text="Usertype: " Foreground="White" FontWeight="Bold"/>
+            <TextBlock Name="txtusertypestatus1" Text="----------" Foreground="White" FontStyle="Italic"/>
+            <TextBlock  Text="Connection Status: " Foreground="White" FontWeight="Bold"/>
+            <TextBlock Name="lblnetstatus" Text="----------" Foreground="White" FontStyle="Italic"/>
+
+
+        </StatusBar>
+
+
+
 
     </Grid>
 

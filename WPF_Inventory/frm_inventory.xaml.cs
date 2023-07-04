@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 using System.Windows.Threading;
+using System.ComponentModel;
+using System.Threading;
 
 namespace WPF_Inventory
 {
@@ -29,17 +31,115 @@ namespace WPF_Inventory
         MySqlDataAdapter da;
         DataTable dt;
 
+        BackgroundWorker _bgWorker;
+        bool _iNeedToCloseAfterBgWorker;
+
+
+        void _bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            ////completed here
+            lblnetstatus.Text = "Successfully connected to SQL Server.";
+            lblnetstatus.Foreground = Brushes.SeaGreen;
+            btnadd.IsEnabled = true;
+            btnupdate.IsEnabled = true;
+            btndelete.IsEnabled = true;
+            // btn_rc.Enabled = true;
+            if (_iNeedToCloseAfterBgWorker)
+                Close();
+        }
+
 
         public void display()
         {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
 
-            da = new MySqlDataAdapter("Select id,NameofStaff,Section,Division,Piece,TypeOfICTEquipment,Type,YearAcquired FROM db_inventory ORDER BY id DESC", con);
-            dt = new DataTable();
-            da.Fill(dt);
-            datagrid.ItemsSource = dt.DefaultView;
-            //this.datagrid.Columns[0].Visibility = Visibility.Hidden;
+                da = new MySqlDataAdapter("Select id,NameofStaff,Section,Division,Piece,TypeOfICTEquipment,Type,YearAcquired FROM db_inventory ORDER BY id DESC", con);
+                dt = new DataTable();
+                da.Fill(dt);
+                datagrid.ItemsSource = dt.DefaultView;
+                //this.datagrid.Columns[0].Visibility = Visibility.Hidden;
+
+
+            });
 
         }
+
+
+        void _bgWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            // Access lbl_internet here
+
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                // Your UI-related code here
+                lblnetstatus.Text = "Detecting SQL Connection please wait...";
+                lblnetstatus.Foreground = Brushes.Yellow;
+            });
+
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                // Your UI-related code here
+                btnadd.IsEnabled = false;
+                btndelete.IsEnabled = false;
+                btnupdate.IsEnabled = false;
+            });
+
+
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                // Your UI-related code here
+                // panel.IsEnabled = false;
+            });
+
+
+
+            // Do long lasting work above is the before process before final
+            Thread.Sleep(1000);
+
+
+
+            try
+            {
+
+
+                con = new MySqlConnection(cs.DBcon);
+
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                con.Open();
+                display();
+                statusbar();
+            
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    // Your UI-related code here
+                    lblnetstatus.Text = "Can't connect to SQL host.";
+                    lblnetstatus.Foreground = Brushes.Crimson;
+                });
+
+                MessageBox.Show(ex.Message);
+
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    // Your UI-related code here
+                    Application.Current.Shutdown();
+                });
+
+            }
+        }
+
 
         private DispatcherTimer timer;
 
@@ -55,10 +155,13 @@ namespace WPF_Inventory
             da.Fill(dt);
             foreach (DataRow dr in dt.Rows)
             {
-                lbluserid.Text = dr["UserID"].ToString();
-                lblusertype.Text = dr["Usertype"].ToString();
+                Application.Current.Dispatcher.Invoke(() =>
+                {
 
+                    lbluserid.Text = dr["UserID"].ToString();
+                    lblusertype.Text = dr["Usertype"].ToString();
 
+                });
             }
         }
 
@@ -66,19 +169,20 @@ namespace WPF_Inventory
         {
             InitializeComponent();
 
-            con = new MySqlConnection(cs.DBcon);
 
-            if (con.State == ConnectionState.Open)
-            {
-                con.Close();
-            }
-            con.Open();
-            display();
-            statusbar();
+
+
+            _bgWorker = new BackgroundWorker();
+            _bgWorker.DoWork += _bgWorker_DoWork;
+            _bgWorker.RunWorkerCompleted += _bgWorker_RunWorkerCompleted;
+
+            _bgWorker.RunWorkerAsync();
+
+
 
             txtnameofstaff.Focus();
 
-            if(txtnameofstaff.Text == "")
+            if (txtnameofstaff.Text == "")
             {
                 listBoxSuggestions.Visibility = Visibility.Hidden;
             }
@@ -100,14 +204,25 @@ namespace WPF_Inventory
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
+
+
+
+          
+
             timerTextBlock.Text = DateTime.Now.ToString("HH:mm:ss");
 
             if (txtnameofstaff.Text == "")
             {
                 listBoxSuggestions.Visibility = Visibility.Hidden;
             }
-       
+
+           else  if(lblmatch.Content == "User Detected.")
+            {
+                listBoxSuggestions.Visibility = Visibility.Hidden;
+            }
+
         }
+    
 
         public void clear()
         {
@@ -118,6 +233,7 @@ namespace WPF_Inventory
             txttypeofict.Clear();
             cmbtype.Text = "";
             datetimepicker.Text = "";
+            lblmatch.Content = "----------";
             display();
             txtnameofstaff.Focus();
         }
@@ -195,7 +311,12 @@ namespace WPF_Inventory
 
         private void btnclear_Click(object sender, RoutedEventArgs e)
         {
-            clear();
+            if (MessageBox.Show("Are you sure you want to clear all the fields?", "Clear", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                clear();
+            }
+
+
         }
 
         private void btnupdate_Click(object sender, RoutedEventArgs e)
@@ -355,7 +476,7 @@ namespace WPF_Inventory
                 connection.Open();
 
                 // Create a SQL command to query the database
-                MySqlCommand command = new MySqlCommand("SELECT nameofstaff FROM db_inventory WHERE nameofstaff LIKE @inputText", connection);
+                MySqlCommand command = new MySqlCommand("SELECT Name FROM db_register WHERE Name LIKE @inputText", connection);
                 command.Parameters.AddWithValue("@inputText", "%" + inputText + "%");
 
                 // Execute the SQL command and retrieve the suggestions
@@ -382,11 +503,41 @@ namespace WPF_Inventory
 
             // Display the suggestions
             ShowSuggestions(suggestions);
+
+
+
+            int i = 0;
+            MySqlCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select Name from db_register where Name='" + txtnameofstaff.Text + "'";
+            cmd.ExecuteNonQuery();
+            DataTable dt = new DataTable();
+            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+            da.Fill(dt);
+            i = Convert.ToInt32(dt.Rows.Count.ToString());
+
+
+            if (i == 0)
+            {
+
+                lblmatch.Content = "User Not Existed.";
+                lblmatch.Foreground = Brushes.Crimson;
+
+            }
+            else
+            {
+
+
+                lblmatch.Content = "User Detected.";
+                lblmatch.Foreground = Brushes.SeaGreen;
+            }
+
+
         }
 
         private void txtnameofstaff_MouseLeave(object sender, MouseEventArgs e)
         {
-
+          
         }
 
         private void btnrfresh_Click(object sender, RoutedEventArgs e)
@@ -409,6 +560,11 @@ namespace WPF_Inventory
                // this.datagrid.Columns[0].Visibility = Visibility.Hidden;
             
             
+        }
+
+        private void txtnameofstaff_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+          
         }
     }
 }

@@ -10,22 +10,26 @@
     <Grid>
 
 
-        <Label Content="Name of Staff" HorizontalAlignment="Left"
+        <Label Content="Name of Staff" HorizontalAlignment="Left" FontWeight="Bold"
+               Margin="30,15,0,0" VerticalAlignment="Top"></Label>
+        <Label Content="Status:" HorizontalAlignment="Left"
                Margin="30,30,0,0" VerticalAlignment="Top"></Label>
-        <Label Content="Section" HorizontalAlignment="Left"
-               Margin="30,80,0,0" VerticalAlignment="Top"></Label>
-        <Label Content="Division" HorizontalAlignment="Left"
-               Margin="30,120,0,0" VerticalAlignment="Top"></Label>
-        <Label Content="Number of pieces" HorizontalAlignment="Left"
+        <Label Content="----------" HorizontalAlignment="Left" Name="lblmatch" FontWeight="Bold"
+               Margin="70,30,0,0" VerticalAlignment="Top"></Label>
+        <Label Content="Section" HorizontalAlignment="Left" FontWeight="Bold"
+               Margin="30,85,0,0" VerticalAlignment="Top"></Label>
+        <Label Content="Division" HorizontalAlignment="Left" FontWeight="Bold"
+               Margin="30,123,0,0" VerticalAlignment="Top"></Label>
+        <Label Content="Number of pieces" HorizontalAlignment="Left" FontWeight="Bold"
                Margin="30,160,0,0" VerticalAlignment="Top"></Label>
 
-        <Label Content="Type of ICT Equipment" HorizontalAlignment="Left"
+        <Label Content="Type of ICT Equipment" HorizontalAlignment="Left" FontWeight="Bold"
                Margin="30,200,0,0" VerticalAlignment="Top"></Label>
 
-        <Label Content="Hardware type" HorizontalAlignment="Left"
+        <Label Content="Hardware type" HorizontalAlignment="Left" FontWeight="Bold"
                Margin="30,245,0,0" VerticalAlignment="Top"></Label>
 
-        <Label Content="Year Acquired" HorizontalAlignment="Left"
+        <Label Content="Year Acquired" HorizontalAlignment="Left" FontWeight="Bold"
                Margin="30,290,0,0" VerticalAlignment="Top"></Label>
 
         <TextBlock x:Name="timerTextBlock" />
@@ -36,26 +40,26 @@
         
         
         <TextBox Name="txtnameofstaff" HorizontalAlignment="Left" TabIndex="0" 
-               Margin="35,53,0,0" VerticalAlignment="Top" Height="20" Width="200" TextChanged="txtnameofstaff_TextChanged" MouseLeave="txtnameofstaff_MouseLeave"></TextBox>
+               Margin="35,53,0,0" VerticalAlignment="Top" Height="20" Width="200" TextChanged="txtnameofstaff_TextChanged" MouseLeave="txtnameofstaff_MouseLeave" SelectionChanged="txtnameofstaff_SelectionChanged"></TextBox>
 
         <ListBox x:Name="listBoxSuggestions"  HorizontalAlignment="Left" SelectionChanged="listBoxSuggestions_SelectionChanged"  Margin="35,70,0,0" VerticalAlignment="Top" Height="20" Width="200" />
 
 
-        <TextBox Name="txtsection" HorizontalAlignment="Left" TabIndex="0" 
-               Margin="35,100,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
+        <TextBox Name="txtsection" HorizontalAlignment="Left" TabIndex="1" 
+               Margin="35,107,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
 
 
-        <TextBox Name="txtdivision" HorizontalAlignment="Left" TabIndex="0" 
-               Margin="35,140,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
+        <TextBox Name="txtdivision" HorizontalAlignment="Left" TabIndex="2" 
+               Margin="35,144,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
 
-        <TextBox Name="txtpiece" HorizontalAlignment="Left" TabIndex="0" 
-               Margin="35,180,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
+        <TextBox Name="txtpiece" HorizontalAlignment="Left" TabIndex="3" 
+               Margin="35,184,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
 
-        <TextBox Name="txttypeofict" HorizontalAlignment="Left" TabIndex="0" 
-               Margin="35,220,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
+        <TextBox Name="txttypeofict" HorizontalAlignment="Left" TabIndex="4" 
+               Margin="35,225,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
 
-        <ComboBox Name="cmbtype" HorizontalAlignment="Left" TabIndex="0" 
-               Margin="35,265,0,0" VerticalAlignment="Top" Height="25" Width="200">
+        <ComboBox Name="cmbtype" HorizontalAlignment="Left" TabIndex="5" 
+               Margin="35,268,0,0" VerticalAlignment="Top" Height="25" Width="200">
 
 
             <ComboBoxItem>Desktop</ComboBoxItem>
@@ -67,15 +71,15 @@
             
         </ComboBox>
 
-        <DatePicker Name="datetimepicker" HorizontalAlignment="Left" TabIndex="0" 
+        <DatePicker Name="datetimepicker" HorizontalAlignment="Left" TabIndex="6" 
                Margin="35,310,0,0" VerticalAlignment="Top" Height="25" Width="200" />
 
-        <Button x:Name="btnclear" Content="Clear"  HorizontalAlignment="Left" TabIndex="8" Cursor="Hand"
+        <Button x:Name="btnclear" Content="Clear"  HorizontalAlignment="Left" TabIndex="10" Cursor="Hand"
                Margin="35,350,0,0" VerticalAlignment="Top" Height="30" Width="120" Click="btnclear_Click" ></Button>
 
         
         
-        <Button x:Name="btnadd"  FontSize="15" FontFamily="CenturyGothic" FontWeight="Bold" HorizontalAlignment="Left" TabIndex="8" Cursor="Hand" Background="#14CA53" 
+        <Button x:Name="btnadd"  FontSize="15" FontFamily="CenturyGothic" FontWeight="Bold" HorizontalAlignment="Left" TabIndex="7" Cursor="Hand" Background="#14CA53" 
                Foreground="White" Margin="35,400,0,0" VerticalAlignment="Top" Height="35" Width="200" Click="btnadd_Click" >
 
 
@@ -109,7 +113,7 @@
             </Button.Content>
         </Button>
 
-        <Button x:Name="btndelete"   HorizontalAlignment="Left" TabIndex="8" Cursor="Hand" FontSize="15" FontFamily="CenturyGothic" FontWeight="Bold" Background="#F33705" 
+        <Button x:Name="btndelete"   HorizontalAlignment="Left" TabIndex="9" Cursor="Hand" FontSize="15" FontFamily="CenturyGothic" FontWeight="Bold" Background="#F33705" 
              Foreground="White" Margin="35,500,0,0" VerticalAlignment="Top" Height="35" Width="200" Click="btndelete_Click" >
 
             <Button.Resources>
@@ -150,6 +154,8 @@
             <Separator BorderThickness="2"/>
             <TextBlock Name="txtusertypestatus" Text="Usertype: " Foreground="White" FontWeight="Bold"/>
             <TextBlock Name="lblusertype" Text="----------" Foreground="White" FontStyle="Italic"/>
+            <TextBlock  Text="Connection Status: " Foreground="White" FontWeight="Bold"/>
+            <TextBlock Name="lblnetstatus" Text="----------" Foreground="White" FontStyle="Italic"/>
         </StatusBar>
 
 
