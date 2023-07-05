@@ -5,79 +5,107 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Inventory"
         mc:Ignorable="d"
-        Title="Registration" Height="520" Width="800" WindowStartupLocation="CenterScreen" x:Name="frm_registration"
+        Title="Registration" Height="550" Width="800" WindowStartupLocation="CenterScreen" x:Name="frm_registration"
         ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
-        <Label Content="Office ID" HorizontalAlignment="Left"
-               Margin="30,30,0,0" VerticalAlignment="Top"></Label>
-        
-        <Label Content="FullName" HorizontalAlignment="Left"
-               Margin="30,69,0,0" VerticalAlignment="Top"></Label>
 
-        <Label Content="User type:" HorizontalAlignment="Left"
-               Margin="30,111,0,0" VerticalAlignment="Top"></Label>
-        <Label Content="Username:" HorizontalAlignment="Left"
-               Margin="30,155,0,0" VerticalAlignment="Top"></Label>
-        <Label Content="Password:" HorizontalAlignment="Left"
-               Margin="30,200,0,0" VerticalAlignment="Top"></Label>
 
-        <TextBlock x:Name="timerTextBlock"  HorizontalAlignment="Left"
-               Margin="30,200,0,0" VerticalAlignment="Top" />
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,35,0,0">
 
-        
-        
-        <Label Content="Enter Office ID or Correct Username to Retrieve" HorizontalAlignment="Left" FontSize="10" FontWeight="Bold"
-               Margin="210,1,0,0" VerticalAlignment="Top"></Label>
+            <TextBox x:Name="lbl_id" Text="ID" FontSize="9" IsReadOnly="True" BorderThickness="0" Margin="0,0,0,0" Height="20" Width="150"></TextBox>
 
-        <TextBox Name="txtofficeid" HorizontalAlignment="Left" TabIndex="0" 
-               Margin="30,53,0,0" VerticalAlignment="Top" Height="20" Width="150"></TextBox>
-        
-        <TextBox Name="txtname" HorizontalAlignment="Left" TabIndex="1" 
-               Margin="30,94,0,0" VerticalAlignment="Top" Height="20" Width="150"></TextBox>
 
-        <ComboBox Name="cmbusertype" TabIndex="2" HorizontalAlignment="Left" 
-               Margin="30,135,0,0" VerticalAlignment="Top" Height="20" Width="150" >
+
+        <Label Content="Office ID"  Margin="10,0,0,0"  FontWeight="Bold"></Label>
+            <TextBox Name="txtofficeid" TabIndex="0" Margin="10,0,0,0" Height="20" Width="150"></TextBox>
+
+            <Label Content="FullName" Margin="10,0,0,0" FontWeight="Bold"></Label>
+            <TextBox Name="txtname" TabIndex="1" Margin="10,0,0,0"  Height="20" Width="150" ></TextBox>
+
+
+            <Label Content="User type:" Margin="10,0,0,0" FontWeight="Bold"></Label>
+        <ComboBox Name="cmbusertype" TabIndex="2" Margin="10,0,0,0" Height="20" Width="150"  >
             <ComboBoxItem>Administrator</ComboBoxItem>
             <ComboBoxItem>User</ComboBoxItem>
         </ComboBox>
+
+
+            <Label Content="Username:" Margin="10,0,0,0" FontWeight="Bold"></Label>
+        <TextBox Name="txtusername" TabIndex="3" Margin="10,0,0,0"  Height="20" Width="150"></TextBox>
+
+
+            <Label Content="Password:" Margin="10,0,0,0" FontWeight="Bold"></Label>
+        <TextBox Name="txtpassword" TabIndex="4" Margin="10,0,0,0" Height="20" Width="150"></TextBox>
+
+
+
+        <Button x:Name="btnclear" Content="Clear" TabIndex="8" Cursor="Hand" Margin="10,10,0,0" Height="30" Width="100" 
+        Click="btnclear_Click"  HorizontalAlignment="Left"></Button>
+
+
+            <Button x:Name="btninsert" Background="SeaGreen" BorderThickness="0" Foreground="White" HorizontalAlignment="Left" TabIndex="6" Cursor="Hand" 
+         Margin="10,20,0,0" Height="30" Width="150" Click="btninsert_Click">
+              
+            <Button.Resources>
+
+                    <Style TargetType="Border">
+
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+
+
+                <Button.Content>
+                    <TextBlock Text="Register" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Button.Content>
+
+            </Button>
+
+            <Button x:Name="btndelete" Background="Crimson" BorderThickness="0" Foreground="White" HorizontalAlignment="Left" TabIndex="7" Cursor="Hand"
+         Margin="10,10,0,0" Height="30" Width="150" Click="btndelete_Click">
+                
+            <Button.Resources>
+
+                    <Style TargetType="Border">
+
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+
+
+                <Button.Content>
+                    <TextBlock Text="Delete" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Button.Content>
+            
+            </Button>
+
+
+
+         
+            
+            
+        </StackPanel>
+
         
-        <TextBox x:Name="lbl_id" Text="ID" HorizontalAlignment="Left" FontSize="9" IsReadOnly="True" BorderThickness="0"
-               Margin="2,1,0,0" VerticalAlignment="Top" Height="20" Width="150"></TextBox>
-
-        <TextBox Name="txtusername" HorizontalAlignment="Left" TabIndex="3" 
-               Margin="30,180,0,0" VerticalAlignment="Top" Height="20" Width="150"></TextBox>
         
-        <TextBox Name="txtpassword" HorizontalAlignment="Left" TabIndex="4" 
-               Margin="30,230,0,0" VerticalAlignment="Top" Height="20" Width="150"></TextBox>
+        
+        <TextBlock x:Name="timerTextBlock" Width="10" Height="10" HorizontalAlignment="Left"
+               Margin="10,10,0,0" VerticalAlignment="Top" />
 
-   
-
-
-        <Button x:Name="btnclear" Content="Clear"  HorizontalAlignment="Left" TabIndex="8" Cursor="Hand"
-               Margin="30,260,0,0" VerticalAlignment="Top" Height="30" Width="100" Click="btnclear_Click"></Button>
-
-
-        <Button x:Name="btninsert" Content="Register"  HorizontalAlignment="Left" TabIndex="6" Cursor="Hand" 
-               Margin="30,349,0,0" VerticalAlignment="Top" Height="30" Width="150" Click="btninsert_Click"></Button>
-
-
-
-        <Button x:Name="btndelete" Content="Delete"  HorizontalAlignment="Left" TabIndex="6" Cursor="Hand"
-               Margin="30,394,0,0" VerticalAlignment="Top" Height="30" Width="150" Click="btndelete_Click"></Button>
-
-        <Button x:Name="btnrefresh" Content="Refresh"  HorizontalAlignment="Left" TabIndex="9" Cursor="Hand"
-               Margin="320,48,0,0" VerticalAlignment="Top" Height="25" Width="100" Click="btnrefresh_Click"></Button>
-
-        <Button x:Name="btnretrieve" Content="Retrieve"  HorizontalAlignment="Left" TabIndex="10" Cursor="Hand"
-               Margin= "210,48,0,0" VerticalAlignment="Top" Height="25" Width="100" Click="btnretrieve_Click"></Button>
-
-
+        <Label Content="Enter Office ID or Correct Username to Retrieve" HorizontalAlignment="Left" FontSize="10" FontWeight="Bold"
+               Margin="210,5,0,0" VerticalAlignment="Top"></Label>
+        
         <TextBox x:Name="txtsearch"  HorizontalAlignment="Left" FontSize="10" TabIndex="11"
                Margin="210,25,0,0" VerticalAlignment="Top" Height="20" Width="560" TextChanged="txtsearch_TextChanged"></TextBox>
-
+       
+        <Button x:Name="btnrefresh" Content="Refresh"  HorizontalAlignment="Left" TabIndex="9" Cursor="Hand"
+               Margin="320,50,0,0" VerticalAlignment="Top" Height="25" Width="100" Click="btnrefresh_Click"></Button>
+        
+        <Button x:Name="btnretrieve" Content="Retrieve"  HorizontalAlignment="Left" TabIndex="10" Cursor="Hand"
+               Margin="210,50,0,0" VerticalAlignment="Top" Height="25" Width="100" Click="btnretrieve_Click"></Button>
 
         <DataGrid x:Name="datagrid" HorizontalAlignment="Left" TabIndex="12" IsReadOnly="True" ColumnWidth="*" SelectionUnit="FullRow" AlternatingRowBackground = "LightBlue"  
-         AlternationCount = "2"  Margin="210,80,0,0" VerticalAlignment="Top" Height="370" Width="560"   CanUserResizeRows="False" >
+         AlternationCount = "2"  Margin="210,80,0,0" VerticalAlignment="Top" Height="400" Width="560"   CanUserResizeRows="False" >
         </DataGrid>
 
 

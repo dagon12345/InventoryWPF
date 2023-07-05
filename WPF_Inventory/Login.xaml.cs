@@ -95,9 +95,9 @@ namespace WPF_Inventory
                     });
 
                     WebClient webClient = new WebClient();
-                    // var client = new WebClient();
+                    var client1 = new WebClient();
 
-                    if (!webClient.DownloadString("https://www.dropbox.com/s/cwts7oep596v51n/Update.txt?dl=1").Contains("1.0.0"))
+                    if (!webClient.DownloadString("https://www.dropbox.com/s/cwts7oep596v51n/Update.txt?dl=1").Contains("1.1.0"))
                     {
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -108,8 +108,10 @@ namespace WPF_Inventory
                         {
                             try
                             {
+                                Application.Current.Dispatcher.Invoke(() =>
+                                {
                                 if (File.Exists(@".\QueueInstaller.msi")) { File.Delete(@".\QueueInstaller.msi"); }
-                                webClient.DownloadFile("https://www.dropbox.com/s/ewfnnfa2yn8442k/InventoryInstaller.zip?dl=1", @"QueueInstaller.zip");
+                                client1.DownloadFile("https://www.dropbox.com/s/ewfnnfa2yn8442k/InventoryInstaller.zip?dl=1", @"QueueInstaller.zip");
                                 string zipPath = @".\QueueInstaller.zip";
                                 string extractPath = @".\";
                                 ZipFile.ExtractToDirectory(zipPath, extractPath);
@@ -121,6 +123,7 @@ namespace WPF_Inventory
                                 this.Close();
 
                                 process.Start();
+                                });
                             }
                             catch (Exception ex)
                             {

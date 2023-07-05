@@ -9,6 +9,8 @@
         >
     <Grid>
 
+        
+        
 
         <Label Content="Name of Staff" HorizontalAlignment="Left" FontWeight="Bold"
                Margin="30,15,0,0" VerticalAlignment="Top"></Label>
@@ -32,7 +34,7 @@
         <Label Content="Year Acquired" HorizontalAlignment="Left" FontWeight="Bold"
                Margin="30,290,0,0" VerticalAlignment="Top"></Label>
 
-        <TextBlock x:Name="timerTextBlock" />
+  
 
 
         <TextBox Name="txtid" HorizontalAlignment="Left" TabIndex="0" Text="ID" Visibility="Hidden"
@@ -79,8 +81,8 @@
 
         
         
-        <Button x:Name="btnadd"  FontSize="15" FontFamily="CenturyGothic" FontWeight="Bold" HorizontalAlignment="Left" TabIndex="7" Cursor="Hand" Background="#14CA53" 
-               Foreground="White" Margin="35,400,0,0" VerticalAlignment="Top" Height="35" Width="200" Click="btnadd_Click" >
+        <Button x:Name="btnadd"  FontSize="15" FontFamily="CenturyGothic" HorizontalAlignment="Left" TabIndex="7" Cursor="Hand" Background="#14CA53" 
+               Foreground="White" Margin="35,400,0,0" VerticalAlignment="Top" Height="35" Width="200" Click="btnadd_Click" BorderThickness="0">
 
 
             <Button.Resources>
@@ -96,8 +98,8 @@
             </Button.Content>
         </Button>
 
-        <Button x:Name="btnupdate"   HorizontalAlignment="Left" TabIndex="8" Cursor="Hand" FontSize="15" FontFamily="CenturyGothic" FontWeight="Bold" Background="#F3B605" 
-             Foreground="White"  Margin="35,450,0,0" VerticalAlignment="Top" Height="35" Width="200" Click="btnupdate_Click" >
+        <Button x:Name="btnupdate"   HorizontalAlignment="Left" TabIndex="8" Cursor="Hand" FontSize="15" FontFamily="CenturyGothic" Background="#F3B605" 
+             Foreground="White"  Margin="35,450,0,0" VerticalAlignment="Top" Height="35" Width="200" Click="btnupdate_Click"  BorderThickness="0" >
 
             <Button.Resources>
 
@@ -113,8 +115,8 @@
             </Button.Content>
         </Button>
 
-        <Button x:Name="btndelete"   HorizontalAlignment="Left" TabIndex="9" Cursor="Hand" FontSize="15" FontFamily="CenturyGothic" FontWeight="Bold" Background="#F33705" 
-             Foreground="White" Margin="35,500,0,0" VerticalAlignment="Top" Height="35" Width="200" Click="btndelete_Click" >
+        <Button x:Name="btndelete"   HorizontalAlignment="Left" TabIndex="9" Cursor="Hand" FontSize="15" FontFamily="CenturyGothic" Background="#F33705" 
+             Foreground="White" Margin="35,500,0,0" VerticalAlignment="Top" Height="35" Width="200" Click="btndelete_Click"   BorderThickness="0">
 
             <Button.Resources>
 
@@ -140,10 +142,10 @@
 
         <Button x:Name="btnrfresh" Content="Refresh"  HorizontalAlignment="Left" Cursor="Hand"
                Margin= "350,56,0,0" VerticalAlignment="Top" Height="25" Width="100" Click="btnrfresh_Click" ></Button>
-        
-        
 
 
+
+        <TextBlock x:Name="timerTextBlock" Width="20" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" />
 
         <DataGrid x:Name="datagrid"  IsReadOnly="True"  SelectionUnit="FullRow" AlternatingRowBackground = "LightBlue"   
          AlternationCount = "2"  Margin="350,90,5,60"  CanUserResizeRows="False"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch" SelectionChanged="datagrid_SelectionChanged"/>
