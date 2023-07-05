@@ -63,8 +63,8 @@
 
             <Button x:Name="btndelete" Background="Crimson" BorderThickness="0" Foreground="White" HorizontalAlignment="Left" TabIndex="7" Cursor="Hand"
          Margin="10,10,0,0" Height="30" Width="150" Click="btndelete_Click">
-                
-            <Button.Resources>
+
+                <Button.Resources>
 
                     <Style TargetType="Border">
 
@@ -76,14 +76,9 @@
                 <Button.Content>
                     <TextBlock Text="Delete" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Button.Content>
-            
+
             </Button>
 
-
-
-         
-            
-            
         </StackPanel>
 
         
@@ -104,7 +99,7 @@
         <Button x:Name="btnretrieve" Content="Retrieve"  HorizontalAlignment="Left" TabIndex="10" Cursor="Hand"
                Margin="210,50,0,0" VerticalAlignment="Top" Height="25" Width="100" Click="btnretrieve_Click"></Button>
 
-        <DataGrid x:Name="datagrid" HorizontalAlignment="Left" TabIndex="12" IsReadOnly="True" ColumnWidth="*" SelectionUnit="FullRow" AlternatingRowBackground = "LightBlue"  
+        <DataGrid x:Name="datagrid" HorizontalAlignment="Left" TabIndex="12" IsReadOnly="True" SelectionUnit="FullRow" AlternatingRowBackground = "LightBlue"  
          AlternationCount = "2"  Margin="210,80,0,0" VerticalAlignment="Top" Height="400" Width="560"   CanUserResizeRows="False" >
         </DataGrid>
 

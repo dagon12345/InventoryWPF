@@ -43,6 +43,7 @@ namespace WPF_Inventory
             btnadd.IsEnabled = true;
             btnupdate.IsEnabled = true;
             btndelete.IsEnabled = true;
+            txtsearch.IsEnabled = true;
             // btn_rc.Enabled = true;
             if (_iNeedToCloseAfterBgWorker)
                 Close();
@@ -85,6 +86,7 @@ namespace WPF_Inventory
                 btnadd.IsEnabled = false;
                 btndelete.IsEnabled = false;
                 btnupdate.IsEnabled = false;
+                txtsearch.IsEnabled = false;
             });
 
 
@@ -216,7 +218,7 @@ namespace WPF_Inventory
                 listBoxSuggestions.Visibility = Visibility.Hidden;
             }
 
-           else  if(lblmatch.Content == "User Detected.")
+           else  if(lblmatch.Content == "User Detected." )
             {
                 listBoxSuggestions.Visibility = Visibility.Hidden;
             }
@@ -234,6 +236,7 @@ namespace WPF_Inventory
             cmbtype.Text = "";
             datetimepicker.Text = "";
             lblmatch.Content = "----------";
+            lblmatch.Foreground = Brushes.SeaGreen;
             display();
             txtnameofstaff.Focus();
         }
@@ -315,7 +318,12 @@ namespace WPF_Inventory
 
         private void btnclear_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to clear all the fields?", "Clear", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if(txtnameofstaff.Text == "" && txtsection.Text == "" && txtdivision.Text == "" && txtpiece.Text == "" && txttypeofict.Text == "" && cmbtype.Text == "" && datetimepicker.Text == "")
+            {
+                MessageBox.Show("Field already cleared.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                txtnameofstaff.Focus();
+            }
+            else if (MessageBox.Show("Are you sure you want to clear all the fields?", "Clear", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 clear();
             }
@@ -552,16 +560,7 @@ namespace WPF_Inventory
         private void txtsearch_SelectionChanged(object sender, RoutedEventArgs e)
         {
            
-                MySqlCommand cmd = con.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from db_inventory where NameofStaff LIKE '" + txtsearch.Text + "%' OR Section LIKE '" + txtsearch.Text + " %' OR Division LIKE '" + txtsearch.Text + "%'";
-                //  cmd.Parameters.AddWithValue("Name", string.Format("%{0}%", txtsearch.Text));
-                cmd.ExecuteNonQuery();
-                DataTable dt = new DataTable();
-                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                da.Fill(dt);
-                datagrid.ItemsSource = dt.DefaultView;
-               // this.datagrid.Columns[0].Visibility = Visibility.Hidden;
+             
             
             
         }
@@ -573,7 +572,20 @@ namespace WPF_Inventory
 
         private void txtsearch_TextChanged(object sender, TextChangedEventArgs e)
         {
+          
 
+
+            MySqlCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from db_inventory where NameofStaff LIKE '" + txtsearch.Text + "%' OR Section LIKE '" + txtsearch.Text + " %' OR Division LIKE '" + txtsearch.Text + "%'";
+            //  cmd.Parameters.AddWithValue("Name", string.Format("%{0}%", txtsearch.Text));
+            cmd.ExecuteNonQuery();
+            DataTable dt = new DataTable();
+            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+            da.Fill(dt);
+            datagrid.ItemsSource = dt.DefaultView;
+            // this.datagrid.Columns[0].Visibility = Visibility.Hidden;
+            
         }
     }
 }

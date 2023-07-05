@@ -23,7 +23,7 @@
         <Label Content="Build Version:" HorizontalAlignment="Left" FontSize="9" FontWeight="Bold"
                Margin="5,250,0,0" VerticalAlignment="Top"></Label>
         
-        <Label Content="1.3.0" HorizontalAlignment="Left" FontSize="9" Name="lblversion" FontWeight="Bold" FontStyle="Italic"
+        <Label Content="1.4.0" HorizontalAlignment="Left" FontSize="9" Name="lblversion" FontWeight="Bold" FontStyle="Italic"
                Margin="80,250,0,0" VerticalAlignment="Top"></Label>
         
         <Label Content="Internet Status:" HorizontalAlignment="Left" FontSize="9" FontWeight="Bold"
@@ -64,7 +64,7 @@
 
 
 
-        <Button x:Name="btnlogin"   HorizontalAlignment="Left" TabIndex="3" Cursor="Hand" BorderThickness="0" Background="SeaGreen" FontWeight="Bold"  
+        <Button x:Name="btnlogin"  IsDefault="True" HorizontalAlignment="Left" TabIndex="3" Cursor="Hand" BorderThickness="0" Background="SeaGreen" FontWeight="Bold"  
                Margin="138,144,0,0" VerticalAlignment="Top" Height="30" Width="150" Click="btnlogin_Click" Grid.ColumnSpan="2" >
 
 

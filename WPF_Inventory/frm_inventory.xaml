@@ -9,147 +9,119 @@
         >
     <Grid>
 
-        
-        
-
-        <Label Content="Name of Staff" HorizontalAlignment="Left" FontWeight="Bold"
-               Margin="30,15,0,0" VerticalAlignment="Top"></Label>
-        <Label Content="Status:" HorizontalAlignment="Left"
-               Margin="30,30,0,0" VerticalAlignment="Top"></Label>
-        <Label Content="----------" HorizontalAlignment="Left" Name="lblmatch" FontWeight="Bold"
-               Margin="70,30,0,0" VerticalAlignment="Top"></Label>
-        <Label Content="Section" HorizontalAlignment="Left" FontWeight="Bold"
-               Margin="30,85,0,0" VerticalAlignment="Top"></Label>
-        <Label Content="Division" HorizontalAlignment="Left" FontWeight="Bold"
-               Margin="30,123,0,0" VerticalAlignment="Top"></Label>
-        <Label Content="Number of pieces" HorizontalAlignment="Left" FontWeight="Bold"
-               Margin="30,160,0,0" VerticalAlignment="Top"></Label>
-
-        <Label Content="Type of ICT Equipment" HorizontalAlignment="Left" FontWeight="Bold"
-               Margin="30,200,0,0" VerticalAlignment="Top"></Label>
-
-        <Label Content="Hardware type" HorizontalAlignment="Left" FontWeight="Bold"
-               Margin="30,245,0,0" VerticalAlignment="Top"></Label>
-
-        <Label Content="Year Acquired" HorizontalAlignment="Left" FontWeight="Bold"
-               Margin="30,290,0,0" VerticalAlignment="Top"></Label>
-
-  
-
-
-        <TextBox Name="txtid" HorizontalAlignment="Left" TabIndex="0" Text="ID" Visibility="Hidden"
-               Margin="35,10,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
-        
-        
-        <TextBox Name="txtnameofstaff" HorizontalAlignment="Left" TabIndex="0" 
-               Margin="35,53,0,0" VerticalAlignment="Top" Height="20" Width="200" TextChanged="txtnameofstaff_TextChanged" MouseLeave="txtnameofstaff_MouseLeave" SelectionChanged="txtnameofstaff_SelectionChanged"></TextBox>
-
-        <ListBox x:Name="listBoxSuggestions"  HorizontalAlignment="Left" SelectionChanged="listBoxSuggestions_SelectionChanged"  Margin="35,70,0,0" VerticalAlignment="Top" Height="20" Width="200" />
-
-
-        <TextBox Name="txtsection" HorizontalAlignment="Left" TabIndex="1" 
-               Margin="35,107,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
-
-
-        <TextBox Name="txtdivision" HorizontalAlignment="Left" TabIndex="2" 
-               Margin="35,144,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
-
-        <TextBox Name="txtpiece" HorizontalAlignment="Left" TabIndex="3" 
-               Margin="35,184,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
-
-        <TextBox Name="txttypeofict" HorizontalAlignment="Left" TabIndex="4" 
-               Margin="35,225,0,0" VerticalAlignment="Top" Height="20" Width="200"></TextBox>
-
-        <ComboBox Name="cmbtype" HorizontalAlignment="Left" TabIndex="5" 
-               Margin="35,268,0,0" VerticalAlignment="Top" Height="25" Width="200">
-
-
-            <ComboBoxItem>Desktop</ComboBoxItem>
-            <ComboBoxItem>Laptop</ComboBoxItem>
-            <ComboBoxItem>Printer</ComboBoxItem>
-            <ComboBoxItem>Extra Monitors</ComboBoxItem>
-            <ComboBoxItem>Photo Copier</ComboBoxItem>
-            
-            
-        </ComboBox>
-
-        <DatePicker Name="datetimepicker" HorizontalAlignment="Left" TabIndex="6" 
-               Margin="35,310,0,0" VerticalAlignment="Top" Height="25" Width="200" />
-
-        <Button x:Name="btnclear" Content="Clear"  HorizontalAlignment="Left" TabIndex="10" Cursor="Hand"
-               Margin="35,350,0,0" VerticalAlignment="Top" Height="30" Width="120" Click="btnclear_Click" ></Button>
-
-        
-        
-        <Button x:Name="btnadd"  FontSize="15" FontFamily="CenturyGothic" HorizontalAlignment="Left" TabIndex="7" Cursor="Hand" Background="#14CA53" 
-               Foreground="White" Margin="35,400,0,0" VerticalAlignment="Top" Height="35" Width="200" Click="btnadd_Click" BorderThickness="0">
-
-
-            <Button.Resources>
-
-                <Style TargetType="Border">
-
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
-            
-            <Button.Content>
-                <TextBlock Text="ADD" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            </Button.Content>
-        </Button>
-
-        <Button x:Name="btnupdate"   HorizontalAlignment="Left" TabIndex="8" Cursor="Hand" FontSize="15" FontFamily="CenturyGothic" Background="#F3B605" 
-             Foreground="White"  Margin="35,450,0,0" VerticalAlignment="Top" Height="35" Width="200" Click="btnupdate_Click"  BorderThickness="0" >
-
-            <Button.Resources>
-
-                <Style TargetType="Border">
-
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
-            
-            
-            <Button.Content>
-                <TextBlock Text="UPDATE" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            </Button.Content>
-        </Button>
-
-        <Button x:Name="btndelete"   HorizontalAlignment="Left" TabIndex="9" Cursor="Hand" FontSize="15" FontFamily="CenturyGothic" Background="#F33705" 
-             Foreground="White" Margin="35,500,0,0" VerticalAlignment="Top" Height="35" Width="200" Click="btndelete_Click"   BorderThickness="0">
-
-            <Button.Resources>
-
-                <Style TargetType="Border">
-
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
-
-
-            <Button.Content>
-                <TextBlock Text="DELETE" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            </Button.Content>
-
-        </Button>
-
-
-        <Label Content="Enter Name of Staff or Section or Division" HorizontalAlignment="Left" FontSize="10" FontWeight="Bold"
-               Margin="350,1,0,0" VerticalAlignment="Top"></Label>
-
-        <TextBox x:Name="txtsearch"  HorizontalAlignment="Left" FontSize="10"
-               Margin="350,25,0,0" VerticalAlignment="Top" Height="20" Width="560" SelectionChanged="txtsearch_SelectionChanged" TextChanged="txtsearch_TextChanged" ></TextBox>
-
-        <Button x:Name="btnrfresh" Content="Refresh"  HorizontalAlignment="Left" Cursor="Hand"
-               Margin= "350,56,0,0" VerticalAlignment="Top" Height="25" Width="100" Click="btnrfresh_Click" ></Button>
-
-
-
         <TextBlock x:Name="timerTextBlock" Width="20" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" />
 
-        <DataGrid x:Name="datagrid"  IsReadOnly="True"  SelectionUnit="FullRow" AlternatingRowBackground = "LightBlue"   
-         AlternationCount = "2"  Margin="350,90,5,60"  CanUserResizeRows="False"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch" SelectionChanged="datagrid_SelectionChanged"/>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,30,0,0">
 
+            
+            <TextBox Name="txtid" HorizontalAlignment="left" TabIndex="0" Text="ID" Visibility="Hidden"
+               Margin="10,0,0,0" VerticalAlignment="Top" Height="20" Width="20"></TextBox>
+
+            <Label Content="Status:" Margin="10,0,0,0"></Label>
+            <Label Content="----------"  Name="lblmatch" FontWeight="Bold" FontSize="9" FontStyle="Italic" Margin="50,-23,0,0" Foreground="SeaGreen"></Label>
+            
+            <Label Content="Name of Staff"  FontWeight="Bold"  Margin="10,0,0,0" ></Label>
+          
+
+            <TextBox Name="txtnameofstaff" TabIndex="0" Margin="10,0,0,0" Height="20" Width="200" TextChanged="txtnameofstaff_TextChanged" MouseLeave="txtnameofstaff_MouseLeave" SelectionChanged="txtnameofstaff_SelectionChanged"></TextBox>
+            <ListBox x:Name="listBoxSuggestions" SelectionChanged="listBoxSuggestions_SelectionChanged"  Margin="10,0,0,0" Height="20" Width="200" />
+           
+            <Label Content="Section" HorizontalAlignment="Left" FontWeight="Bold"  Margin="10,0,0,0"></Label>
+            <TextBox Name="txtsection" TabIndex="1" Margin="10,0,0,0" Height="20" Width="200"></TextBox>
+
+            <Label Content="Division" FontWeight="Bold" Margin="10,0,0,0 "></Label>
+            <TextBox Name="txtdivision" TabIndex="2" Margin="10,0,0,0" Height="20" Width="200"></TextBox>
+           
+            <Label Content="Number of pieces" FontWeight="Bold" Margin="10,0,0,0" ></Label>
+            <TextBox Name="txtpiece" TabIndex="3" Margin="10,0,0,0"  Height="20" Width="200"></TextBox>
+
+            <Label Content="Type of ICT Equipment" FontWeight="Bold" Margin="10,0,0,0" ></Label>
+            <TextBox Name="txttypeofict" TabIndex="4" Margin="10,0,0,0"  Height="20" Width="200"></TextBox>
+
+            <Label Content="Hardware type" FontWeight="Bold" Margin="10,0,0,0"></Label>
+            <ComboBox Name="cmbtype" TabIndex="5" Margin="10,0,0,0" VerticalAlignment="Top" Height="25" Width="200">
+                <ComboBoxItem>Desktop</ComboBoxItem>
+                <ComboBoxItem>Laptop</ComboBoxItem>
+                <ComboBoxItem>Printer</ComboBoxItem>
+                <ComboBoxItem>Extra Monitors</ComboBoxItem>
+                <ComboBoxItem>Photo Copier</ComboBoxItem>
+            </ComboBox>
+
+            <Label Content="Year Acquired" FontWeight="Bold" Margin="10,0,0,0" ></Label>
+            <DatePicker Name="datetimepicker" TabIndex="6" Margin="10,0,0,0" Height="25" Width="200" />
+
+            
+            
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="20,430,0,0">
+            <Button x:Name="btnclear" Content="Clear" TabIndex="10" Cursor="Hand" Margin="0,10,0,0" HorizontalAlignment="Left" Height="30" Width="120" Click="btnclear_Click" Background="DarkCyan" Foreground="White" BorderThickness="0"></Button>
+
+            <Button x:Name="btnadd" IsDefault="True" FontSize="15" FontFamily="CenturyGothic" HorizontalAlignment="Left" TabIndex="7" Cursor="Hand" Background="#14CA53" 
+               Foreground="White" Margin="0,10,0,0"  Height="35" Width="200" Click="btnadd_Click" BorderThickness="0">
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+
+                <Button.Content>
+                    <TextBlock Text="ADD" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Button.Content>
+            </Button>
+
+
+            <Button x:Name="btnupdate" HorizontalAlignment="Left" TabIndex="8" Cursor="Hand" FontSize="15" FontFamily="CenturyGothic" Background="#F3B605" 
+             Foreground="White"  Margin="0,10,0,0"  Height="35" Width="200" Click="btnupdate_Click"  BorderThickness="0" >
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+
+                <Button.Content>
+                    <TextBlock Text="UPDATE" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Button.Content>
+            </Button>
+
+
+            <Button x:Name="btndelete"   HorizontalAlignment="Left" TabIndex="9" Cursor="Hand" FontSize="15" FontFamily="CenturyGothic" Background="#F33705" 
+             Foreground="White" Margin="0,10,0,0" VerticalAlignment="Top" Height="35" Width="200" Click="btndelete_Click"   BorderThickness="0">
+
+                <Button.Resources>
+
+                    <Style TargetType="Border">
+
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+
+                <Button.Content>
+                    <TextBlock Text="DELETE" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Button.Content>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,30,0,0">
+           
+            
+            <Label Content="Enter Name of Staff or Section or Division" HorizontalAlignment="Left" FontSize="10" FontWeight="Bold"
+               Margin="300,10,0,0" VerticalAlignment="Top"></Label>
+
+            <TextBox x:Name="txtsearch"  HorizontalAlignment="Left" FontSize="10"
+               Margin="300,0,0,0" VerticalAlignment="Top" Height="20" Width="560" SelectionChanged="txtsearch_SelectionChanged" TextChanged="txtsearch_TextChanged" ></TextBox>
+
+            <Button x:Name="btnrfresh" Content="Refresh"  HorizontalAlignment="Left" Cursor="Hand"
+               Margin= "300,10,0,0" VerticalAlignment="Top" Height="25" Width="100" Click="btnrfresh_Click" ></Button>
+            
+        </StackPanel>
+        
+        <DataGrid x:Name="datagrid"  IsReadOnly="True"  SelectionUnit="FullRow" AlternatingRowBackground = "LightBlue"  
+         AlternationCount = "2"  Margin="300,130,5,40"  CanUserResizeRows="False"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch" SelectionChanged="datagrid_SelectionChanged"/>
+        
         <StatusBar Height="25" VerticalAlignment="Bottom" Background="Black" >
             <TextBlock Name="txtstatus" Text="User ID: " Foreground="White" FontWeight="Bold"/>
             <TextBlock Name="lbluserid" Text="----------" Foreground="White" FontStyle="Italic"/>

@@ -268,12 +268,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5050CEACC414CF18BCFAA848B93437E4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_68B48A868DA1409A8610AA3909617625"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -361,6 +355,12 @@
         "OwnerKey" = "8:_3D117A924396EFA2EFD51CBDB765A457"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5050CEACC414CF18BCFAA848B93437E4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -379,6 +379,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -395,6 +403,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -965,15 +981,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:InventoryInstaller"
-        "ProductCode" = "8:{AE0C5221-4DF6-4DA2-8378-B64736F1D9B2}"
-        "PackageCode" = "8:{8150F46E-2841-4EBB-86EB-196AED12CAA5}"
+        "ProductCode" = "8:{24A08A93-1D8A-4E50-8A9A-766DD8D24D86}"
+        "PackageCode" = "8:{80810365-6C02-4592-A97E-91D5CBD00B2C}"
         "UpgradeCode" = "8:{0F93B30D-3372-4B1D-AF14-E7BEAD042DEA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.3.0"
+        "ProductVersion" = "8:1.4.0"
         "Manufacturer" = "8:DSWDInventory"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
