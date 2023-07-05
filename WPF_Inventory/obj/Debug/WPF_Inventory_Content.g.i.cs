@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("logout.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dswd%20ico.ico")]
 
 

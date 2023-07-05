@@ -18,6 +18,9 @@ using System.Runtime.InteropServices;
 using System.Net;
 using System.ComponentModel;
 using System.Threading;
+using System.IO;
+using System.IO.Compression;
+using System.Diagnostics;
 
 namespace WPF_Inventory
 {
@@ -48,11 +51,11 @@ namespace WPF_Inventory
         }
 
 
-   
+
         void _bgWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             // Access lbl_internet here
-           
+
 
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -68,7 +71,7 @@ namespace WPF_Inventory
             });
 
 
-     
+
 
             // Do long lasting work above is the before process before final
             Thread.Sleep(1000);
@@ -80,7 +83,53 @@ namespace WPF_Inventory
                 using (var stream = client.OpenRead("http://www.google.com"))
                 {
                     //MessageBox.Show("Internet Up");
-                   
+
+
+
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        // Your UI-related code here
+                        lblnetstatus.Content = "Checking for Updates....";
+                        lblnetstatus.Foreground = Brushes.SeaGreen;
+
+                    });
+
+                    WebClient webClient = new WebClient();
+                    // var client = new WebClient();
+
+                    if (!webClient.DownloadString("https://www.dropbox.com/s/cwts7oep596v51n/Update.txt?dl=1").Contains("1.0.0"))
+                    {
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            lblnetstatus.Content = "Update available!...";
+                        });
+
+                        if (MessageBox.Show("New update available! Do you want to install it?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                        {
+                            try
+                            {
+                                if (File.Exists(@".\QueueInstaller.msi")) { File.Delete(@".\QueueInstaller.msi"); }
+                                webClient.DownloadFile("https://www.dropbox.com/s/ewfnnfa2yn8442k/InventoryInstaller.zip?dl=1", @"QueueInstaller.zip");
+                                string zipPath = @".\QueueInstaller.zip";
+                                string extractPath = @".\";
+                                ZipFile.ExtractToDirectory(zipPath, extractPath);
+
+                                Process process = new Process();
+                                process.StartInfo.FileName = "msiexec";
+                                process.StartInfo.Arguments = String.Format("/i QueueInstaller.msi");
+
+                                this.Close();
+
+                                process.Start();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+                        }
+
+                    }
+
 
                     Application.Current.Dispatcher.Invoke(() =>
                     {
@@ -90,6 +139,7 @@ namespace WPF_Inventory
                     });
                 }
             }
+
             catch
             {
 
@@ -100,7 +150,7 @@ namespace WPF_Inventory
                     lblnetstatus.Foreground = Brushes.Crimson;
                 });
                 // MessageBox.Show("Internet Down");
-             
+
                 //lblnetstatus
             }
 
@@ -319,7 +369,11 @@ namespace WPF_Inventory
 
         private void btnexit_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            if (MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();
+            }
+            
         }
     }
 }

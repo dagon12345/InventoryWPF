@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Inventory"
         mc:Ignorable="d"
-        Title="Login" Height="300" Width="400" WindowStartupLocation="CenterScreen" x:Name="frm_login"
+        Title="Login" Height="320" Width="400" WindowStartupLocation="CenterScreen" x:Name="frm_login"
         ResizeMode="NoResize" Closed="frm_login_Closed">
 
 
@@ -19,6 +19,13 @@
         </Grid.ColumnDefinitions>
 
 
+
+        <Label Content="Build Version:" HorizontalAlignment="Left" FontSize="9" FontWeight="Bold"
+               Margin="5,250,0,0" VerticalAlignment="Top"></Label>
+        
+        <Label Content="1.0.0" HorizontalAlignment="Left" FontSize="9" Name="lblversion" FontWeight="Bold" FontStyle="Italic"
+               Margin="80,250,0,0" VerticalAlignment="Top"></Label>
+        
         <Label Content="Internet Status:" HorizontalAlignment="Left" FontSize="9" FontWeight="Bold"
                Margin="5,230,0,0" VerticalAlignment="Top"></Label>
 
