@@ -97,7 +97,7 @@ namespace WPF_Inventory
                     WebClient webClient = new WebClient();
                     var client1 = new WebClient();
 
-                    if (!webClient.DownloadString("https://www.dropbox.com/s/cwts7oep596v51n/Update.txt?dl=1").Contains("1.1.0"))
+                    if (!webClient.DownloadString("https://www.dropbox.com/s/cwts7oep596v51n/Update.txt?dl=1").Contains("1.2.0"))
                     {
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -110,15 +110,15 @@ namespace WPF_Inventory
                             {
                                 Application.Current.Dispatcher.Invoke(() =>
                                 {
-                                if (File.Exists(@".\QueueInstaller.msi")) { File.Delete(@".\QueueInstaller.msi"); }
-                                client1.DownloadFile("https://www.dropbox.com/s/ewfnnfa2yn8442k/InventoryInstaller.zip?dl=1", @"QueueInstaller.zip");
-                                string zipPath = @".\QueueInstaller.zip";
+                                if (File.Exists(@".\InventoryInstaller.msi")) { File.Delete(@".\InventoryInstaller.msi"); }
+                                client1.DownloadFile("https://www.dropbox.com/s/ewfnnfa2yn8442k/InventoryInstaller.zip?dl=1", @"InventoryInstaller.zip");
+                                string zipPath = @".\InventoryInstaller.zip";
                                 string extractPath = @".\";
                                 ZipFile.ExtractToDirectory(zipPath, extractPath);
 
                                 Process process = new Process();
                                 process.StartInfo.FileName = "msiexec";
-                                process.StartInfo.Arguments = String.Format("/i QueueInstaller.msi");
+                                process.StartInfo.Arguments = String.Format("/i InventoryInstaller.msi");
 
                                 this.Close();
 
