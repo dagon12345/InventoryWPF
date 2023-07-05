@@ -244,6 +244,10 @@ namespace WPF_Inventory
             {
                 MessageBox.Show("Please Fill All the Fields!");
             }
+            else if(lblmatch.Content == "User Not Existed.")
+            {
+                MessageBox.Show("Register Name first before adding. Go to registration tab","Register User",MessageBoxButton.OK,MessageBoxImage.Information);
+            }
 
             else
             {

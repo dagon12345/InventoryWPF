@@ -8,7 +8,7 @@
         Title="Inventory Informations" Height="700" Width="1000" WindowStartupLocation="CenterScreen">
     <Grid>
 
-        <Label Content="Search Equipment" HorizontalAlignment="Left" FontSize="10" FontWeight="Bold"
+        <Label Content="Search Equipment Type" HorizontalAlignment="Left" FontSize="10" FontWeight="Bold"
                Margin="15,1,0,0" VerticalAlignment="Top"></Label>
         
         <TextBox x:Name="txtsearch"  HorizontalAlignment="Left" FontSize="10"
