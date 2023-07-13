@@ -10,6 +10,6 @@ namespace WPF_Inventory
     {
       //  public string DBcon = "server=localhost; port=3306; userid=root; database=inventory_database";
 
-       public string DBcon = @"server = 172.31.242.29; port=3306; userid=admin; password=admin; database=inventory_database";
+       public string DBcon = @"server = 172.31.242.29; port=3306; userid=admin; password=admin; database=inventory_databasenew";
     }
 }
