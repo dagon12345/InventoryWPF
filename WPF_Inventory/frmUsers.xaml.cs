@@ -54,7 +54,7 @@ namespace WPF_Inventory
             Application.Current.Dispatcher.Invoke(() =>
             {
 
-                da = new MySqlDataAdapter("Select NameOfStaff,Section,Division,Piece,TypeOfICTEquipment,Type,YearAcquired FROM db_inventory  WHERE NameOfStaff = '"+ lblname.Text +"' ORDER BY id DESC", con);
+                da = new MySqlDataAdapter("Select * FROM db_inventory  WHERE NameOfStaff = '"+ lblname.Text +"' ORDER BY id DESC", con);
                 dt = new DataTable();
                 da.Fill(dt);
                 datagrid.ItemsSource = dt.DefaultView;
@@ -202,7 +202,7 @@ namespace WPF_Inventory
             {
                 MySqlCommand cmd = con.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select NameOfStaff,Section,Division,Piece,TypeOfICTEquipment,Type,YearAcquired FROM db_inventory WHERE Type LIKE '" + txtsearch.Text + "%' AND NameofStaff = '" + lblname.Text + "'";
+                cmd.CommandText = "select * FROM db_inventory WHERE Type LIKE '" + txtsearch.Text + "%' AND NameofStaff = '" + lblname.Text + "'";
                 //  cmd.Parameters.AddWithValue("Name", string.Format("%{0}%", txtsearch.Text));
                 cmd.ExecuteNonQuery();
                 dt = new DataTable();

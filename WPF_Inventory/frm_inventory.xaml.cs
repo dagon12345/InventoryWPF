@@ -55,7 +55,7 @@ namespace WPF_Inventory
             Application.Current.Dispatcher.Invoke(() =>
             {
 
-                da = new MySqlDataAdapter("Select id,NameofStaff,Section,Division,Piece,TypeOfICTEquipment,Type,YearAcquired FROM db_inventory ORDER BY id DESC", con);
+                da = new MySqlDataAdapter("Select * FROM db_inventory ORDER BY id DESC", con);
                 dt = new DataTable();
                 da.Fill(dt);
                 datagrid.ItemsSource = dt.DefaultView;
@@ -234,6 +234,15 @@ namespace WPF_Inventory
             txtpiece.Clear();
             txttypeofict.Clear();
             cmbtype.Text = "";
+
+            txtserialnumber.Clear();
+            txtprevowner.Clear();
+            txtmodel.Clear();
+            txtbrand.Clear();
+            txtproperty.Clear();
+            txtcost.Clear();
+
+
             datetimepicker.Text = "";
             lblmatch.Content = "----------";
             lblmatch.Foreground = Brushes.SeaGreen;
@@ -270,13 +279,22 @@ namespace WPF_Inventory
                 {
                     MySqlCommand cmd1 = con.CreateCommand();
                     cmd1.CommandType = CommandType.Text;
-                    cmd1.CommandText = "insert into db_inventory (NameOfStaff,Section,Division,Piece,TypeOfICTEquipment,Type,YearAcquired)values (@NameOfStaff,@Section,@Division,@Piece,@TypeOfICTEquipment,@Type,@YearAcquired)";
+                    cmd1.CommandText = "insert into db_inventory (NameOfStaff,Section,Division,Piece,TypeOfICTEquipment,Type,SerialNumber,PreviousOwner,Model,Brand,PropertyNumber,Cost,YearAcquired)values " +
+                        "(@NameOfStaff,@Section,@Division,@Piece,@TypeOfICTEquipment,@Type,@SerialNumber,@PreviousOwner,@Model,@Brand,@PropertyNumber,@Cost,@YearAcquired)";
                     cmd1.Parameters.AddWithValue("@NameOfStaff", txtnameofstaff.Text);
                     cmd1.Parameters.AddWithValue("@Section", txtsection.Text);
                     cmd1.Parameters.AddWithValue("@Division", txtdivision.Text);
                     cmd1.Parameters.AddWithValue("@Piece", txtpiece.Text);
                     cmd1.Parameters.AddWithValue("@TypeOfICTEquipment", txttypeofict.Text);
                     cmd1.Parameters.AddWithValue("@Type", cmbtype.Text);
+
+                    cmd1.Parameters.AddWithValue("@SerialNumber", txtserialnumber.Text);
+                    cmd1.Parameters.AddWithValue("@PreviousOwner", txtprevowner.Text);
+                    cmd1.Parameters.AddWithValue("@Model", txtmodel.Text);
+                    cmd1.Parameters.AddWithValue("@Brand", txtbrand.Text);
+                    cmd1.Parameters.AddWithValue("@PropertyNumber", txtproperty.Text);
+                    cmd1.Parameters.AddWithValue("@Cost", txtcost.Text);
+
                     cmd1.Parameters.AddWithValue("@YearAcquired", datetimepicker.Text);
                     cmd1.ExecuteNonQuery();
 
@@ -337,13 +355,19 @@ namespace WPF_Inventory
             {
                 MessageBox.Show("Please select data you want to update","Warning",MessageBoxButton.OK,MessageBoxImage.Error);
             }
-            
+            else if (lblmatch.Content == "User Not Existed.")
+            {
+                MessageBox.Show("Register Name first before adding. Go to registration tab", "Register User", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+
             else
             {
 
                 MySqlCommand cmd = con.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd = new MySqlCommand("update db_inventory set NameOfStaff=@NameOfStaff, Section=@Section, Division=@Division ,Piece=@Piece,TypeOfICTEquipment=@TypeOfICTEquipment,Type=@Type,YearAcquired=@YearAcquired WHERE id=@id", con);
+                cmd = new MySqlCommand("update db_inventory set NameOfStaff=@NameOfStaff, Section=@Section, Division=@Division ,Piece=@Piece,TypeOfICTEquipment=@TypeOfICTEquipment,Type=@Type" +
+                    ",SerialNumber=@SerialNumber,PreviousOwner=@PreviousOwner,Model=@Model,Brand=@Brand,PropertyNumber=@PropertyNumber,Cost=@Cost,YearAcquired=@YearAcquired WHERE id=@id", con);
                 cmd.Parameters.AddWithValue("@id", txtid.Text);
                 cmd.Parameters.AddWithValue("@NameOfStaff", txtnameofstaff.Text);
                 cmd.Parameters.AddWithValue("@Section", txtsection.Text);
@@ -351,6 +375,17 @@ namespace WPF_Inventory
                 cmd.Parameters.AddWithValue("@Piece", txtpiece.Text);
                 cmd.Parameters.AddWithValue("@TypeOfICTEquipment", txttypeofict.Text);
                 cmd.Parameters.AddWithValue("@Type", cmbtype.Text);
+
+                cmd.Parameters.AddWithValue("@SerialNumber", txtserialnumber.Text);
+                cmd.Parameters.AddWithValue("@PreviousOwner", txtprevowner.Text);
+                cmd.Parameters.AddWithValue("@Model", txtmodel.Text);
+                cmd.Parameters.AddWithValue("@Brand", txtbrand.Text);
+                cmd.Parameters.AddWithValue("@PropertyNumber", txtproperty.Text);
+                cmd.Parameters.AddWithValue("@Cost", txtcost.Text);
+
+
+
+
                 cmd.Parameters.AddWithValue("@YearAcquired", datetimepicker.Text);
                 cmd.ExecuteNonQuery();
 
@@ -397,6 +432,14 @@ namespace WPF_Inventory
                 string Piece = selectedRow["Piece"].ToString(); // Replace "YourColumnName" with the actual column name
                 string typeofict = selectedRow["TypeOfICTEquipment"].ToString(); // Replace "YourColumnName" with the actual column name
                 string type = selectedRow["Type"].ToString(); // Replace "YourColumnName" with the actual column name
+
+                string serialnumber = selectedRow["SerialNumber"].ToString();
+                string previousOwner = selectedRow["PreviousOwner"].ToString();
+                string model = selectedRow["Model"].ToString();
+                string brand = selectedRow["Brand"].ToString();
+                string propertynumber = selectedRow["PropertyNumber"].ToString();
+                string cost = selectedRow["Cost"].ToString();
+
                 string yearacquired = selectedRow["YearAcquired"].ToString(); // Replace "YourColumnName" with the actual column name
 
                 txtid.Text = id;
@@ -406,6 +449,12 @@ namespace WPF_Inventory
                 txtpiece.Text = Piece;
                 txttypeofict.Text = typeofict;
                 cmbtype.Text = type;
+                txtserialnumber.Text = serialnumber;
+                txtprevowner.Text = previousOwner;
+                txtmodel.Text = model;
+                txtbrand.Text = brand;
+                txtproperty.Text = propertynumber;
+                txtcost.Text = cost;
                 datetimepicker.Text = yearacquired;
             }
         }
@@ -574,10 +623,10 @@ namespace WPF_Inventory
         {
           
 
-
+            /*
             MySqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from db_inventory where NameofStaff LIKE '" + txtsearch.Text + "%' OR Section LIKE '" + txtsearch.Text + " %' OR Division LIKE '" + txtsearch.Text + "%'";
+            cmd.CommandText = "select * from db_inventory where NameofStaff LIKE '" + txtsearch.Text + "%' OR Section LIKE '" + txtsearch.Text + " %' OR Division LIKE '" + txtsearch.Text + "%' OR Type LIKE '" + txtsearch.Text + " %' OR SerialNumber LIKE '" + txtsearch.Text + " %'OR Model LIKE '" + txtsearch.Text + " %'OR Brand LIKE '" + txtsearch.Text + " %'OR PropertyNumber LIKE '" + txtsearch.Text + " %'";
             //  cmd.Parameters.AddWithValue("Name", string.Format("%{0}%", txtsearch.Text));
             cmd.ExecuteNonQuery();
             DataTable dt = new DataTable();
@@ -585,7 +634,22 @@ namespace WPF_Inventory
             da.Fill(dt);
             datagrid.ItemsSource = dt.DefaultView;
             // this.datagrid.Columns[0].Visibility = Visibility.Hidden;
-            
+
+            */
+
+
+
+            MySqlCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from db_inventory where NameofStaff LIKE '" + txtsearch.Text + "%'  OR SerialNumber LIKE '" + txtsearch.Text + " %' OR Model LIKE '" + txtsearch.Text + " %'OR Brand LIKE '" + txtsearch.Text + " %'OR PropertyNumber LIKE '" + txtsearch.Text + " %'";
+            //  cmd.Parameters.AddWithValue("Name", string.Format("%{0}%", txtsearch.Text));
+            cmd.ExecuteNonQuery();
+            DataTable dt = new DataTable();
+            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+            da.Fill(dt);
+            datagrid.ItemsSource = dt.DefaultView;
+
+
         }
     }
 }
